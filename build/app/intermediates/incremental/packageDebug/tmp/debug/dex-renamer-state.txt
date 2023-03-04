@@ -1,0 +1,4 @@
+#Sat Mar 04 12:10:42 BRT 2023
+base.0=/home/devdalee/projeto/TB_Koch/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
