@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
+
 class Paciente {
   int id;
   String nome;
+  String dataN;
   String naturalidade;
   String profissao;
   String nomeMae;
@@ -18,6 +21,7 @@ class Paciente {
   Paciente({
     required this.id,
     required this.nome,
+    required this.dataN,
     required this.naturalidade,
     required this.profissao,
     required this.nomeMae,
@@ -37,6 +41,7 @@ class Paciente {
     return Paciente(
       id: map['id_paciente'] ?? 1,
       nome: map['nome'] ?? 'Paciente sem nome',
+      dataN: map['data_nasc'] ?? '0000-00-00',
       naturalidade: map['naturalidade'] ?? 'Não Informado',
       profissao: map['profissao'] ?? 'Não Informado',
       nomeMae: map['nome_mae'] ?? 'Não Informado',
@@ -49,7 +54,8 @@ class Paciente {
       nSinan: map['n_sinan'] ?? 'Não Informado',
       unidadeTratamento: map['unidade_tratamento'] ?? 'Não Informado',
       unidadeCad: map['unidade_cad'] ?? 'Não Informado',
-      imgTrat: map['img_trat'] ?? 'Não Informado',
+      imgTrat: map['img_trat'] ??
+          'https://cdn-icons-png.flaticon.com/512/5110/5110429.png',
     );
   }
 }

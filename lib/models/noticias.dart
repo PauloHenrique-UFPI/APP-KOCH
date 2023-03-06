@@ -19,9 +19,10 @@ class Noticia {
       id: map['id_noticia'] ?? 1,
       titulo: map['titulo'] ?? 'Não Informado',
       data: map['data'] ?? 'Não Informado',
-      img: map['img'] ?? 'Não Informado',
-      desCurta: map['desCurta'] ?? 'Não Informado',
-      descLonga: map['descLonga'] ?? 'Não Informado',
+      img: map['img'] ??
+          'https://cdn-icons-png.flaticon.com/512/5110/5110429.png',
+      desCurta: map['desc_curta'] ?? 'Não Informado',
+      descLonga: map['desc_longa'] ?? 'Não Informado',
     );
   }
 }

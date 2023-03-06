@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:koch_app/models/noticias.dart';
 import 'package:koch_app/named_routes.dart';
+import 'package:intl/intl.dart';
 
 class NoticiaCompleta extends StatefulWidget {
   final Noticia noticias;
@@ -21,6 +22,8 @@ class _NoticiaCompletaState extends State<NoticiaCompleta> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime data = DateTime.parse(widget.noticias.data);
+    String dataFormatada = DateFormat('dd-MM-yyyy').format(data);
     return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -53,20 +56,47 @@ class _NoticiaCompletaState extends State<NoticiaCompleta> {
                     child: Column(children: [
                       Text(
                         widget.noticias.titulo,
-                        style: _style(),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                          color: Colors.red,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        widget.noticias.desCurta,
+                        textAlign: TextAlign.justify,
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
                       ),
                       const SizedBox(
                         height: 5,
                       ),
-                      Text(widget.noticias.data),
-                      const SizedBox(
-                        height: 5,
+                      AspectRatio(
+                        aspectRatio: 1,
+                        child: Image.network(
+                          widget.noticias.img,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      Text(widget.noticias.desCurta),
                       const SizedBox(
-                        height: 5,
+                        height: 20,
                       ),
-                      Text(widget.noticias.descLonga),
+                      Text("Data de Publicação: $dataFormatada"),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        widget.noticias.descLonga,
+                        textAlign: TextAlign.justify,
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
                       const SizedBox(
                         height: 20,
                       ),

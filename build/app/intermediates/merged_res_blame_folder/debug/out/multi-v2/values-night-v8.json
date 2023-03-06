@@ -1,17 +1,17 @@
 {
     "logs": [
         {
-            "outputFile": "/home/devdalee/projeto/TB_Koch/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
+            "outputFile": "C:\\Users\\hunte\\OneDrive\\Documentos\\Projeto - TB_KOCH\\app\\TB_Koch\\APP-KOCH\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "/home/devdalee/projeto/TB_Koch/android/app/src/main/res/values-night/styles.xml",
+                    "source": "C:\\Users\\hunte\\OneDrive\\Documentos\\Projeto - TB_KOCH\\app\\TB_Koch\\APP-KOCH\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
-                        "startOffsets": "172,817",
+                        "startOffsets": "175,831",
                         "endLines": "7,16",
                         "endColumns": "12,12",
-                        "endOffsets": "475,981"
+                        "endOffsets": "482,997"
                     },
                     "to": {
                         "startLines": "2,7",

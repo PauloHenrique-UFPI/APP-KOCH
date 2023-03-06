@@ -80,7 +80,15 @@ class _Body extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    title: Text(noticias[index].titulo),
+                    title: Text(
+                      noticias[index].titulo,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.red,
+                      ),
+                    ),
                   ),
                   ListTile(
                     title: Text(noticias[index].desCurta),
