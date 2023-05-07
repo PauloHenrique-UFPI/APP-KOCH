@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+#Tue May 02 15:23:36 BRT 2023
+base.0=C\:\\Users\\hunte\\OneDrive\\Documentos\\Projeto - TB_KOCH\\app\\APP-2\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+=======
+#Sat Apr 22 16:42:05 BRT 2023
+base.0=/home/devdalee/Downloads/APP-KOCH/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+>>>>>>> parent of f6c09e3 (Prontuario Quase Completo)
+renamed.0=classes.dex
+path.0=classes.dex

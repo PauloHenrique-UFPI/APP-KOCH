@@ -1,0 +1,10 @@
+const String RootViewRoute = '/';
+const String LoginViewRoute = '/login';
+const String ProfileViewRoute = '/profile';
+const String FichaViewRoute = '/ficha';
+const String ContatoViewRoute = '/fcontatos';
+const String AddPacienteViewRoute = '/addPaciente';
+const String NoticiaCompletaViewRoute = '/noticiaCompleta';
+const String AddNoticiaViewRoute = '/addNoticia';
+const String InitialViemRoute = '/inicial';
+const String ProntuarioViewRoute = '/prontuario';

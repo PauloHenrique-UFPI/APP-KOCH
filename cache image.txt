@@ -1,0 +1,7 @@
+ cached_network_image: ^3.2.2
+
+serve para carregar a imagem em cache 
+para que a mesma não precise ser renderizada(baixada)
+varias vezes 
+ja estamo usando em algumas partes do codigo, mas precisamos padronizar seu uso
+em TODO o codigo onde for possivel.
