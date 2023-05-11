@@ -33,7 +33,7 @@ class ControllerNoticias extends ChangeNotifier {
   Future<void> buscarNoticia() async {
     try {
       loading = true;
-      _noticias = await _repository.buscarNoticia('oafoafaok');
+      _noticias = await _repository.buscarNoticia('Qualquer coisa ai');
     } finally {
       loading = false;
       notifyListeners();

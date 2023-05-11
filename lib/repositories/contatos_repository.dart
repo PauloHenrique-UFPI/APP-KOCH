@@ -1,4 +1,4 @@
-import 'package:koch_app/core/rest_client/rest_client.dart';
+import 'package:koch_app/models/rest_client.dart';
 import 'package:koch_app/models/contatos.dart';
 
 class ContatoRepository {

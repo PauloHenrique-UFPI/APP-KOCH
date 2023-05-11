@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\hunte\\OneDrive\\Documentos\\Projeto - TB_KOCH\\app\\APP-2\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-te\\values-te.xml",
+            "outputFile": "/home/devdalee/projeto/APP-KOCH/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-te/values-te.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\hunte\\.gradle\\caches\\transforms-3\\6710ee2e3546b398da00e75003abfc33\\transformed\\core-1.9.0\\res\\values-te\\values-te.xml",
+                    "source": "/home/devdalee/.gradle/caches/transforms-3/6710ee2e3546b398da00e75003abfc33/transformed/core-1.9.0/res/values-te/values-te.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

@@ -3,6 +3,7 @@ import 'package:koch_app/named_routes.dart';
 import 'package:koch_app/pages/contatos_page.dart';
 import 'package:koch_app/pages/home_page.dart';
 import 'package:koch_app/pages/paciente_page.dart';
+
 class Root extends StatefulWidget {
   const Root({super.key});
 
@@ -14,9 +15,9 @@ class _RootState extends State<Root> {
   @override
   var _currentIndex = 1;
   var _children = [
-    ContatoPage(),
-    HomePage(),
-    PacientePage(),
+    const ContatoPage(),
+    const HomePage(),
+    const PacientePage(),
   ];
 
   _onTap(int tab) {

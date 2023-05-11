@@ -74,7 +74,7 @@ class _Body extends StatelessWidget {
           GestureDetector(
               onTap: () => Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
                   (route) => false),
               child: ListTile(
                 leading: Container(

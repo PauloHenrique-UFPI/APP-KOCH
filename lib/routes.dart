@@ -6,6 +6,7 @@ import 'package:koch_app/models/prontuario.dart';
 import 'package:koch_app/named_routes.dart';
 import 'package:koch_app/pages/add_noticias.dart';
 import 'package:koch_app/pages/add_paciente.dart';
+import 'package:koch_app/pages/add_prontuario.dart';
 import 'package:koch_app/pages/fichaContato_page.dart';
 import 'package:koch_app/pages/fichaPaciente_page.dart';
 
@@ -16,8 +17,6 @@ import 'package:koch_app/pages/profile_page.dart';
 import 'package:koch_app/pages/prontuario_page.dart';
 import 'package:koch_app/root.dart';
 
-import 'models/prontuario.dart';
-
 Map<String, Widget Function(BuildContext)> routes = {
   InitialViemRoute: (p0) => const PaginaInicial(),
   RootViewRoute: (p0) => const Root(),
@@ -25,6 +24,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   ProfileViewRoute: (p0) => const ProfilePage(),
   AddPacienteViewRoute: (p0) => const AddPacientes(),
   AddNoticiaViewRoute: (p0) => const AddNoticia(),
+  // AddProntuarioViewRoute: (p0) => const AddProntuario(),
   FichaViewRoute: (context) {
     final arg = ModalRoute.of(context)?.settings.arguments;
     return FichaPage(

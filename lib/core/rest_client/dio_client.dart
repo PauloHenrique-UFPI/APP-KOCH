@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:koch_app/core/rest_client/rest_client.dart';
+import 'package:koch_app/models/rest_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DioClient extends RestClient {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:koch_app/componentization/app_controler.dart';
 import 'package:koch_app/controllers.dart/controller_noticias.dart';
-import 'package:koch_app/core/rest_client/rest_client.dart';
+import 'package:koch_app/models/rest_client.dart';
 import 'package:koch_app/models/noticias.dart';
 import 'package:koch_app/named_routes.dart';
 import 'package:koch_app/repositories/noticias_repository.dart';

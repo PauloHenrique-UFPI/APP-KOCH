@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:koch_app/validations_mixin.dart';
 import '../componentization/block_button.dart';
-import '../core/rest_client/rest_client.dart';
+import '../models/rest_client.dart';
 import '../root.dart';
 
 class AddNoticia extends StatefulWidget {
@@ -50,7 +50,7 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => Root()),
+                    MaterialPageRoute(builder: (context) => const Root()),
                     (route) => false,
                   );
                 },

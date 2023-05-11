@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:koch_app/models/paciente.dart';
-=======
->>>>>>> parent of f6c09e3 (Prontuario Quase Completo)
 import 'package:koch_app/models/prontuario.dart';
 import 'package:koch_app/named_routes.dart';
 
 class ProntuarioPage extends StatefulWidget {
   final Prontuario prontuario;
-<<<<<<< HEAD
-  const ProntuarioPage({super.key, required this.prontuario});
-=======
-
   const ProntuarioPage({super.key, required this.prontuario});
 
->>>>>>> parent of f6c09e3 (Prontuario Quase Completo)
   @override
   State<ProntuarioPage> createState() => _ProntuarioPageState();
 }
@@ -76,7 +67,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                   TextField(
                       readOnly: true,
                       controller: TextEditingController(
-                          text: widget.prontuario.tipo_entrada),
+                          text: widget.prontuario.agravos),
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         contentPadding: EdgeInsets.all(16),

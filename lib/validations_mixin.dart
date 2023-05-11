@@ -10,7 +10,7 @@ mixin ValidationsMixin {
     }
     return null;
   }
-  
+
   String? validacaoCompleta(List<String? Function()> validators) {
     for (final func in validators) {
       final validation = func();

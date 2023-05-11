@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:koch_app/validations_mixin.dart';
 
-import '../core/rest_client/rest_client.dart';
+import '../models/rest_client.dart';
 import '../root.dart';
 
 class AddPacientes extends StatefulWidget {
@@ -90,7 +90,7 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => Root()),
+                    MaterialPageRoute(builder: (context) => const Root()),
                     (route) => false,
                   );
                 },
