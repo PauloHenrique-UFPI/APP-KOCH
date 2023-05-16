@@ -48,7 +48,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
             padding: const EdgeInsets.only(top: 10),
             alignment: Alignment.bottomCenter,
             child: Text(
-              'Ficha Médica',
+              'Prontuário',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ),
@@ -73,7 +73,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'População Especifica: ',
@@ -88,7 +88,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'Beneficiario:',
@@ -103,7 +103,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'Tipo Da Doença:',
@@ -118,7 +118,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'Se Extrapulmonar:',
@@ -133,7 +133,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'Agravos:',
@@ -148,7 +148,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'Diagnostico:',
@@ -163,7 +163,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'Radiografia:',
@@ -178,7 +178,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'HIV:',
@@ -193,7 +193,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'Terapia:',
@@ -208,7 +208,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'Data de Inicio do Tratamento Atual:',
@@ -223,7 +223,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'Histopatologia:',
@@ -238,7 +238,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'Cultura:',
@@ -253,7 +253,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'Teste de Sensibilidade:',
@@ -268,7 +268,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     'Contatos Identificados:',
@@ -283,7 +283,7 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                         contentPadding: EdgeInsets.all(16),
                       )),
                   const SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                 ],
               ),

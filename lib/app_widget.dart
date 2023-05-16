@@ -6,7 +6,6 @@ import 'package:koch_app/models/rest_client.dart';
 import 'package:koch_app/named_routes.dart';
 import 'package:koch_app/routes.dart';
 
-
 class AppWidget extends StatefulWidget {
   const AppWidget({super.key});
 
