@@ -1,4 +1,4 @@
-#Thu May 11 09:19:10 BRT 2023
+#Tue May 16 10:13:28 BRT 2023
 base.0=/home/devdalee/projeto/APP-KOCH/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

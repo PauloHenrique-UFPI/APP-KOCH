@@ -67,7 +67,217 @@ class _ProntuarioPageState extends State<ProntuarioPage> {
                   TextField(
                       readOnly: true,
                       controller: TextEditingController(
+                          text: widget.prontuario.tipo_entrada),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'População Especifica: ',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller: TextEditingController(
+                          text: widget.prontuario.popu_especifica),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Beneficiario:',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller: TextEditingController(
+                          text: widget.prontuario.beneficiario),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Tipo Da Doença:',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller: TextEditingController(
+                          text: widget.prontuario.tipo_doenca),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Se Extrapulmonar:',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller: TextEditingController(
+                          text: widget.prontuario.se_extrapulmonar),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Agravos:',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller: TextEditingController(
                           text: widget.prontuario.agravos),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Diagnostico:',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller: TextEditingController(
+                          text: widget.prontuario.diagnostico),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Radiografia:',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller: TextEditingController(
+                          text: widget.prontuario.radiografia),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'HIV:',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller:
+                          TextEditingController(text: widget.prontuario.hiv),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Terapia:',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller: TextEditingController(
+                          text: widget.prontuario.terapia),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Data de Inicio do Tratamento Atual:',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller: TextEditingController(
+                          text: widget.prontuario.data_inicio_tratamento_atual),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Histopatologia:',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller: TextEditingController(
+                          text: widget.prontuario.histopatologia),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Cultura:',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller: TextEditingController(
+                          text: widget.prontuario.cultura),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Teste de Sensibilidade:',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller: TextEditingController(
+                          text: widget.prontuario.teste_sensibilidade),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Contatos Identificados:',
+                    style: _style(),
+                  ),
+                  TextField(
+                      readOnly: true,
+                      controller: TextEditingController(
+                          text: widget.prontuario.contatos_identificados),
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         contentPadding: EdgeInsets.all(16),
