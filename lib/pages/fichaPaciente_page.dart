@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:koch_app/models/paciente.dart';
-import 'package:koch_app/models/prontuario.dart';
 import 'package:koch_app/named_routes.dart';
 import 'package:intl/intl.dart';
 import 'package:koch_app/repositories/prontuario_repository.dart';

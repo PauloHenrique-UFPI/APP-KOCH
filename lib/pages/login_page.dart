@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   Future login(String email, String password) async {
     SharedPreferences _sharedPreferences =
         await SharedPreferences.getInstance();
+
     try {
       final response = await httpClient.post(
         '/login',
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
 
       token = response['token'];
       await _sharedPreferences.setString('token', token);
-      // ignore: use_build_context_synchronously
+      // ignore: use_build_context_synchronously||
       Navigator.pushNamed(context, InitialViemRoute);
     } catch (error) {
       // ignore: use_build_context_synchronously

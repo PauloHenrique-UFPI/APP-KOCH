@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:koch_app/validations_mixin.dart';
 import '../componentization/block_button.dart';
 import '../models/rest_client.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../root.dart';
 
 class AddNoticia extends StatefulWidget {
@@ -19,6 +20,10 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
   final _desc = TextEditingController();
   final _img = TextEditingController();
   final httpClient = GetIt.I.get<RestClient>();
+  final spinkit = const SpinKitWaveSpinner(
+  color: Colors.red,
+  size: 50.0,
+  );
 
   Future add(
       String titulo, String img, String desc_curta, String desc_longa) async {
