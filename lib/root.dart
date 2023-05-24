@@ -12,9 +12,8 @@ class Root extends StatefulWidget {
 }
 
 class _RootState extends State<Root> {
-  @override
   var _currentIndex = 1;
-  var _children = [
+  final _children = [
     const ContatoPage(),
     const HomePage(),
     const PacientePage(),

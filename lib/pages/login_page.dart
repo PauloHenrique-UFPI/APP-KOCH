@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
 
       token = response['token'];
       await _sharedPreferences.setString('token', token);
-      // ignore: use_build_context_synchronously||
+      // ignore: use_build_context_synchronously
       Navigator.pushNamed(context, InitialViemRoute);
     } catch (error) {
       // ignore: use_build_context_synchronously

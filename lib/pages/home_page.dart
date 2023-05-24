@@ -117,7 +117,6 @@ class Customizavel extends StatelessWidget {
     return Switch(
       value: AppController.instance.temaDaAplicacao,
       onChanged: (value) {
-        animation:
         AppController.instance.changeThema();
       },
     );

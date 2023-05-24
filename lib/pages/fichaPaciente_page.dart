@@ -148,41 +148,12 @@ class _FichaPageState extends State<FichaPage> {
                       onPressed: () async {
                         var teste =
                             await repo.achar(widget.paciente.id.toString());
-                        if (teste != null) {
-                          Navigator.pushNamed(
-                            context,
-                            ProntuarioViewRoute,
-                            arguments: teste,
-                          );
-                        } else {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: const Text('Paciente Sem Prontuário'),
-                                content: const Text(
-                                    'Este Paciente não tem um prontuario ou não foi encontrado, deseja dicionar?'),
-                                // title: const Text('ERRO'),
-                                // content: const Text('Erro no servidor:'),
-                                actions: [
-                                  TextButton(
-                                    child: const Text('Adicionar'),
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, AddProntuarioViewRoute);
-                                    },
-                                  ),
-                                  TextButton(
-                                    child: const Text('Cancelar'),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        }
+
+                        Navigator.pushNamed(
+                          context,
+                          AddProntuarioViewRoute,
+                          arguments: teste,
+                        );
                       },
                       child: const Text("Acessar Prontuario"),
                     ),

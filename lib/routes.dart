@@ -24,7 +24,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   ProfileViewRoute: (p0) => const ProfilePage(),
   AddPacienteViewRoute: (p0) => const AddPacientes(),
   AddNoticiaViewRoute: (p0) => const AddNoticia(),
-  // AddProntuarioViewRoute: (p0) => const AddProntuario(),
+  AddProntuarioViewRoute: (p0) => const AddProntuario(),
   FichaViewRoute: (context) {
     final arg = ModalRoute.of(context)?.settings.arguments;
     return FichaPage(
