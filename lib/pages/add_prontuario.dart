@@ -37,7 +37,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
     'Recidiva',
     'Reingresso',
     'Após Abandono',
-    'Não Sabe',
+    'Não Se Sabe',
     'Transferência',
     'Pós-Óbito',
   ];
@@ -75,7 +75,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
     'Pulmonar',
     'Extrapulmonar',
     'Pulmonar + Extrapulmonar',
-    'Não Sabe',
+    'Não Se Sabe',
   ];
 
   var doencaAgravaos = [
@@ -94,7 +94,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
     'Positiva',
     'Negativa',
     'Não Realizada',
-    'Não se Aplica',
+    'Não Se Aplica',
   ];
 
   var radiografiaTorax = [
@@ -148,11 +148,11 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
     '+10',
   ];
 
-  String tipoEntradaValue = 'Não Sabe';
+  String tipoEntradaValue = 'Não Se Sabe';
   String populacoesEspeciaisValue = 'Não';
   String beneficiarioValue = 'Não';
   String seExtrapulmonarValue = 'Não Se Aplica';
-  String formaValue = 'Não Sabe';
+  String formaValue = 'Não Se Sabe';
   String doencaAgravaosValue = 'Não';
   String baciloscopiaDiagnosticoValue = 'Não Realizada';
   String radiografiaToraxValue = 'Não Realizado';
@@ -282,7 +282,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               DropdownButton(
                 value: tipoEntradaValue,
@@ -309,7 +309,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               DropdownButton(
                 value: populacoesEspeciaisValue,
@@ -336,7 +336,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               DropdownButton(
                 value: beneficiarioValue,
@@ -363,7 +363,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               DropdownButton(
                 value: seExtrapulmonarValue,
@@ -390,7 +390,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               DropdownButton(
                 value: formaValue,
@@ -427,7 +427,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               DropdownButton(
                 value: doencaAgravaosValue,
@@ -454,7 +454,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               DropdownButton(
                 value: baciloscopiaDiagnosticoValue,
@@ -482,7 +482,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               DropdownButton(
                 value: radiografiaToraxValue,
@@ -509,7 +509,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               DropdownButton(
                 value: hivValue,
@@ -536,7 +536,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               DropdownButton(
                 value: terapiaValue,
@@ -571,7 +571,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 DropdownButton(
                   value: histopatologiaValue,
@@ -598,7 +598,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 DropdownButton(
                   value: culturaValue,
@@ -625,7 +625,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 DropdownButton(
                   value: testeSensibilidadeValue,
@@ -652,7 +652,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 DropdownButton(
                   value: contatosIdentificadosValue,
@@ -673,7 +673,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
                   },
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 5,
                 ),
                 GestureDetector(
                   onTap: () => _selectDate(context),
