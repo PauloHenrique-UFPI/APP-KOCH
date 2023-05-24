@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:koch_app/validations_mixin.dart';
@@ -148,6 +147,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
     '6 - 10',
     '+10',
   ];
+
   String tipoEntradaValue = 'Não Sabe';
   String populacoesEspeciaisValue = 'Não';
   String beneficiarioValue = 'Não';
@@ -273,7 +273,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
         Step(
           state: _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 0,
-          title: const Text('Prontuário'),
+          title: const Text('Parte 1'),
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -418,7 +418,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
         Step(
           state: _activeStepIndex <= 1 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 1,
-          title: const Text('Prontuário'),
+          title: const Text('Parte 2'),
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -562,7 +562,7 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
             state:
                 _activeStepIndex <= 2 ? StepState.editing : StepState.complete,
             isActive: _activeStepIndex >= 2,
-            title: const Text('Prontuário'),
+            title: const Text('Parte 3'),
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
