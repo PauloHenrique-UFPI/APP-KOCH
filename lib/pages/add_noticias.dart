@@ -21,8 +21,8 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
   final _img = TextEditingController();
   final httpClient = GetIt.I.get<RestClient>();
   final spinkit = const SpinKitWaveSpinner(
-  color: Colors.red,
-  size: 50.0,
+    color: Colors.red,
+    size: 50.0,
   );
 
   Future add(
@@ -98,141 +98,117 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
     }
 
     return MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.red,
-        ),
-        home: Scaffold(
-            appBar: AppBar(
-                title: const Text(
-                  'TB-Koch',
-                  style: TextStyle(
-                      fontSize: 16.0, color: Color.fromARGB(255, 26, 25, 25)),
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+            title: const Text(
+              'TB-Koch',
+              style: TextStyle(
+                  fontSize: 16.0, color: Color.fromARGB(255, 26, 25, 25)),
+            ),
+            actions: <Widget>[
+              IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
+              //Customizavel(),
+            ],
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back),
+              //replace with our own icon data.
+            )),
+        body: SingleChildScrollView(
+          child: Card(
+            margin: const EdgeInsets.only(top: 15),
+            child: Form(
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 12, right: 12, top: 10, bottom: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextFormField(
+                      controller: _titulo,
+                      textAlign: TextAlign.center,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Um titulo para a noticia',
+                        labelText: 'Titulo *',
+                      ),
+                      onSaved: (String? value) {
+                        // This optional block of code can be used to run
+                        // code when the user saves the form.
+                      },
+                      validator: (value) => validacaoCompleta([
+                        () => isNotEmpty(value),
+                      ]),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      controller: _img,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Uma URL de imagem para a noticia',
+                        labelText: 'URL img ',
+                      ),
+                      validator: (value) => validacaoCompleta([
+                        () => isNotEmpty(value),
+                      ]),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    TextFormField(
+                      controller: _descCurta,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Breve Descrição da noticia',
+                        labelText: 'Prefácio *',
+                      ),
+                      validator: (value) => validacaoCompleta([
+                        () => isNotEmpty(value),
+                      ]),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      maxLines: null,
+                      controller: _desc,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Noticia Completa *",
+                      ),
+                      validator: (value) => validacaoCompleta([
+                        () => isNotEmpty(value),
+                      ]),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    BlockButton(
+                      icon: Icons.send,
+                      label: 'Criar',
+                      probutton: 150,
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          add(_titulo.text, _img.text, _descCurta.text,
+                              _desc.text);
+                        }
+                      },
+                    ),
+                  ],
                 ),
-                actions: <Widget>[
-                  IconButton(
-                      icon: const Icon(Icons.settings), onPressed: () {}),
-                  //Customizavel(),
-                ],
-                leading: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back),
-                  //replace with our own icon data.
-                )),
-            body: SingleChildScrollView(
-              child: Card(
-                  margin: const EdgeInsets.only(top: 15),
-                  child: Form(
-                    key: _formKey,
-                    child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 12, right: 12, top: 10, bottom: 12),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextFormField(
-                                controller: _titulo,
-                                textAlign: TextAlign.center,
-                                decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Um titulo para a noticia',
-                                  labelText: 'Titulo *',
-                                ),
-                                onSaved: (String? value) {
-                                  // This optional block of code can be used to run
-                                  // code when the user saves the form.
-                                },
-                                validator: (value) => validacaoCompleta([
-                                  () => isNotEmpty(value),
-                                ]),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              TextFormField(
-                                controller: _img,
-                                decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Uma URL de imagem para a noticia',
-                                  labelText: 'URL img ',
-                                ),
-                                validator: (value) => validacaoCompleta([
-                                  () => isNotEmpty(value),
-                                ]),
-                              ),
-                              const SizedBox(
-                                height: 30,
-                              ),
-                              TextFormField(
-                                controller: _descCurta,
-                                decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Breve Descrição da noticia',
-                                  labelText: 'Prefácio *',
-                                ),
-                                validator: (value) => validacaoCompleta([
-                                  () => isNotEmpty(value),
-                                ]),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              TextFormField(
-                                maxLines: null,
-                                controller: _desc,
-                                decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: "Noticia Completa *",
-                                ),
-                                validator: (value) => validacaoCompleta([
-                                  () => isNotEmpty(value),
-                                ]),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              BlockButton(
-                                  icon: Icons.send,
-                                  label: 'Criar',
-                                  probutton: 150,
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      add(_titulo.text, _img.text,
-                                          _descCurta.text, _desc.text);
-                                    }
-                                  })
-                            ])),
-                  )),
-            )));
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
-/*
-ListTile(
-                                leading: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      color: Colors.red.withOpacity(0.1)),
-                                  child: BlockButton(
-                                      icon: Icons.send,
-                                      label: 'Criar',
-                                      probutton: 150,
-                                      onPressed: (_for) {
-                                        add(_titulo.text, _img.text,
-                                            _descCurta.text, _desc.text);
-                                      }),
-                                ),
-                                title: GestureDetector(
-                                  onTap: () => {
-                                    Navigator.pushNamed(context, RootViewRoute)
-                                  },
-                                  child: const Text(
-                                    'cancelar',
-                                    style: TextStyle(
-                                      color: Colors.red,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                ),
-                              )
-*/

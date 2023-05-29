@@ -50,6 +50,7 @@ class _PaginaInicial extends State<PaginaInicial> {
         await SharedPreferences.getInstance();
 
     String? token = _sharedPreferences.getString('token');
+    // ignore: unused_local_variable
     final httpClient = GetIt.I.get<RestClient>();
 
     if (token == null) {
