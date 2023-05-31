@@ -55,7 +55,7 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
     DateTime data = DateFormat('d/M/yyyy').parse(dNasc);
     String dataFormatada = DateFormat('yyyy-MM-dd').format(data);
     try {
-            showDialog(
+      showDialog(
         context: context,
         builder: (BuildContext context) {
           context = context;
