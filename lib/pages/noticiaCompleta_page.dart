@@ -16,7 +16,7 @@ class NoticiaCompleta extends StatefulWidget {
 
 class _NoticiaCompletaState extends State<NoticiaCompleta> {
   late DateTime data;
-  late final int _id = widget.noticias.id;
+  late final int id = widget.noticias.id;
   late String dataFormatada;
   final httpClient = GetIt.I.get<RestClient>();
 
@@ -27,15 +27,17 @@ class _NoticiaCompletaState extends State<NoticiaCompleta> {
     super.initState();
   }
 
-  Future delete(int id) async {
+  Future delete(Map<String, dynamic> id) async {
     String mensagem;
     try {
       final response = await httpClient.delete(
         '/delete-new',
-        widget.noticias.id,
+        {
+          "id": widget.noticias.id,
+        },
       );
 
-      mensagem = response.data;
+      mensagem = response["message"];
       // ignore: use_build_context_synchronously
       showDialog(
         context: context,
@@ -65,7 +67,7 @@ class _NoticiaCompletaState extends State<NoticiaCompleta> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text('Alerta'),
-            content: const Text('Ops! algo deu errado'),
+            content: const Text('Erro:'),
             actions: [
               TextButton(
                 child: const Text('OK'),
@@ -170,7 +172,7 @@ class _NoticiaCompletaState extends State<NoticiaCompleta> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.red,
         foregroundColor: Colors.white,
-        onPressed: () => {delete(_id)},
+        onPressed: () => {delete(id)},
         child: const Icon(Icons.delete),
       ),
     );

@@ -16,7 +16,7 @@ class Noticia {
   });
   factory Noticia.toMap(map) {
     return Noticia(
-      id: map['id_noticia'] ?? 1,
+      id: map['id'] ?? 1,
       titulo: map['titulo'] ?? 'Não Informado',
       data: map['created_at'] ?? 'Não Informado',
       img: map['img'] ??

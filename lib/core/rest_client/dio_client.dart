@@ -54,18 +54,18 @@ class DioClient extends RestClient {
   }
 
   @override
-  Future<Response> delete(String path, int id) async {
-    SharedPreferences _sharedPreferences =
-        await SharedPreferences.getInstance();
+  Future<Map> delete(String path, Map<String, dynamic> data) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-    String? token = _sharedPreferences.getString('token');
+    String? token = sharedPreferences.getString('token');
 
     try {
-      final response = await dio.delete('$path/:$id',
-          options: Options(headers: {
-            HttpHeaders.authorizationHeader: 'Bearer $token',
-            'content-Type': 'application/json'
-          }));
+      final response =
+          await dio.delete('$path/30',
+              options: Options(headers: {
+                HttpHeaders.authorizationHeader: 'Bearer $token',
+                'content-Type': 'application/json'
+              }));
       return response.data;
     } catch (e) {
       print('Erro $e');
