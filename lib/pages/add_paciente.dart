@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+import 'package:koch_app/componentization/loading.dart';
 import 'package:koch_app/validations_mixin.dart';
 
 import '../models/rest_client.dart';
@@ -54,6 +55,13 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
     DateTime data = DateFormat('d/M/yyyy').parse(dNasc);
     String dataFormatada = DateFormat('yyyy-MM-dd').format(data);
     try {
+            showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          context = context;
+          return const Loading();
+        },
+      );
       final response = await httpClient.post(
         '/create-paciente',
         {

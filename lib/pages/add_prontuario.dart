@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+import 'package:koch_app/componentization/loading.dart';
 import 'package:koch_app/validations_mixin.dart';
 import '../models/rest_client.dart';
 import '../root.dart';
@@ -185,6 +186,13 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
     DateTime data = DateFormat('d/M/yyyy').parse(data_inicio_tratamento_atual);
     String dataFormatada = DateFormat('yyyy-MM-dd').format(data);
     try {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          context = context;
+          return const Loading();
+        },
+      );
       final response = await httpClient.post(
         '/create-paciente',
         {

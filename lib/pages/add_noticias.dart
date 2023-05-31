@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:koch_app/componentization/loading.dart';
 import 'package:koch_app/validations_mixin.dart';
 import '../componentization/block_button.dart';
 import '../models/rest_client.dart';
@@ -29,6 +30,13 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
       String titulo, String img, String desc_curta, String desc_longa) async {
     String mensagem;
     try {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          context = context;
+          return const Loading();
+        },
+      );
       final response = await httpClient.post(
         '/create-new',
         {
@@ -45,10 +53,8 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Alerta'),
+            title: const Text('Sucesso!'),
             content: Text(mensagem),
-            // title: const Text('ERRO'),
-            // content: const Text('Erro no servidor:'),
             actions: [
               TextButton(
                 child: const Text('OK'),
@@ -70,8 +76,8 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Alerta'),
-            content: const Text('Ops! algo deu errado'),
+            title: const Text('Ops!'),
+            content: const Text('Algo deu errado'),
             // title: const Text('ERRO'),
             // content: const Text('Erro no servidor:'),
             actions: [

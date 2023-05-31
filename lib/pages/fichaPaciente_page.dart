@@ -6,7 +6,6 @@ import 'package:koch_app/models/paciente.dart';
 import 'package:koch_app/named_routes.dart';
 import 'package:intl/intl.dart';
 import 'package:koch_app/repositories/prontuario_repository.dart';
-
 import '../models/rest_client.dart';
 
 class FichaPage extends StatefulWidget {

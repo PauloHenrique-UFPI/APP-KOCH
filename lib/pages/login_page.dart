@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:koch_app/componentization/block_button.dart';
+import 'package:koch_app/componentization/loading.dart';
 import 'package:koch_app/models/rest_client.dart';
 import 'package:koch_app/named_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,6 +26,13 @@ class _LoginPageState extends State<LoginPage> {
         await SharedPreferences.getInstance();
 
     try {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          context = context;
+          return const Loading();
+        },
+      );
       final response = await httpClient.post(
         '/login',
         {
@@ -35,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
 
       token = response['token'];
       await _sharedPreferences.setString('token', token);
-      // ignore: use_build_context_synchronously
+
       Navigator.pushNamed(context, InitialViemRoute);
     } catch (error) {
       // ignore: use_build_context_synchronously

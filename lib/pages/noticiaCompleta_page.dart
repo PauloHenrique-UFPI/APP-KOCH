@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:koch_app/componentization/loading.dart';
 import 'package:koch_app/models/noticias.dart';
 import 'package:koch_app/models/rest_client.dart';
 import 'package:koch_app/named_routes.dart';
@@ -27,14 +28,19 @@ class _NoticiaCompletaState extends State<NoticiaCompleta> {
     super.initState();
   }
 
-  Future delete(Map<String, dynamic> id) async {
+  Future delete(String id) async {
     String mensagem;
     try {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          context = context;
+          return const Loading();
+        },
+      );
       final response = await httpClient.delete(
         '/delete-new',
-        {
-          "id": widget.noticias.id,
-        },
+        widget.noticias.id.toString(),
       );
 
       mensagem = response["message"];
@@ -172,7 +178,11 @@ class _NoticiaCompletaState extends State<NoticiaCompleta> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.red,
         foregroundColor: Colors.white,
-        onPressed: () => {delete(id)},
+        onPressed: () => {
+          delete(
+            id.toString(),
+          ),
+        },
         child: const Icon(Icons.delete),
       ),
     );
