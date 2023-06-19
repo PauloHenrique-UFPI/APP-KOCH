@@ -1,8 +1,11 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:koch_app/componentization/loading.dart';
 import 'package:koch_app/validations_mixin.dart';
-import '../componentization/block_button.dart';
 import '../models/rest_client.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../root.dart';
@@ -25,6 +28,8 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
     color: Colors.red,
     size: 50.0,
   );
+  File? image;
+  File? croppedFile;
 
   Future add(
       String titulo, String img, String desc_curta, String desc_longa) async {
@@ -78,8 +83,6 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
           return AlertDialog(
             title: const Text('Ops!'),
             content: const Text('Algo deu errado'),
-            // title: const Text('ERRO'),
-            // content: const Text('Erro no servidor:'),
             actions: [
               TextButton(
                 child: const Text('OK'),
@@ -101,6 +104,48 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
         fontFamily: 'RobotoMono',
         fontWeight: FontWeight.bold,
       );
+    }
+
+    Future<void> cropImage() async {
+      if (image != null) {
+        final croppedFile = await ImageCropper().cropImage(
+          sourcePath: image!.path,
+          compressQuality: 100,
+          maxHeight: 1024,
+          maxWidth: 1024,
+          uiSettings: [
+            AndroidUiSettings(
+              toolbarTitle: 'Cropper',
+              toolbarColor: Colors.red,
+              toolbarWidgetColor: Colors.white,
+              initAspectRatio: CropAspectRatioPreset.original,
+              lockAspectRatio: false,
+            ),
+          ],
+        );
+        print('Image Loaded');
+        if (croppedFile != null) {
+          setState(() {
+            image = File(croppedFile.path);
+          });
+        }
+      }
+    }
+
+    Future pickImage() async {
+      try {
+        final imagePicker = ImagePicker();
+        final image = await imagePicker.pickImage(source: ImageSource.gallery);
+        if (image == null) {
+          return this.image;
+        }
+        final imageTemp = File(image.path);
+        setState(() => this.image = imageTemp);
+        cropImage();
+        return this.image;
+      } on PlatformException catch (e) {
+        print('Failed to pick image: $e');
+      }
     }
 
     return MaterialApp(
@@ -126,15 +171,14 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
               //replace with our own icon data.
             )),
         body: SingleChildScrollView(
-          child: Card(
-            margin: const EdgeInsets.only(top: 15),
+          child: Center(
             child: Form(
               key: _formKey,
               child: Padding(
                 padding: const EdgeInsets.only(
                     left: 12, right: 12, top: 10, bottom: 12),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     TextFormField(
                       controller: _titulo,
@@ -144,10 +188,7 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
                         hintText: 'Um titulo para a noticia',
                         labelText: 'Titulo *',
                       ),
-                      onSaved: (String? value) {
-                        // This optional block of code can be used to run
-                        // code when the user saves the form.
-                      },
+                      onSaved: (String? value) {},
                       validator: (value) => validacaoCompleta([
                         () => isNotEmpty(value),
                       ]),
@@ -156,21 +197,6 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
                       height: 10,
                     ),
                     TextFormField(
-                      controller: _img,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Uma URL de imagem para a noticia',
-                        labelText: 'URL img ',
-                      ),
-                      validator: (value) => validacaoCompleta([
-                        () => isNotEmpty(value),
-                      ]),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    TextFormField(
-                      controller: _descCurta,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Breve Descrição da noticia',
@@ -195,24 +221,40 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
                       ]),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
-                    BlockButton(
-                      icon: Icons.send,
-                      label: 'Criar',
-                      probutton: 150,
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          add(_titulo.text, _img.text, _descCurta.text,
-                              _desc.text);
-                        }
-                      },
+                    if (image != null) Image.file(image!),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    ElevatedButton(
+                      onPressed: pickImage,
+                      child: const Text(
+                        "Selecione uma imagem da galeria",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
                     ),
                   ],
                 ),
               ),
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.red,
+          foregroundColor: Colors.white,
+          onPressed: () => {
+            if (_formKey.currentState!.validate())
+              {
+                add(_titulo.text, _img.text, _descCurta.text, _desc.text),
+              }
+          },
+          child: const Icon(Icons.send),
         ),
       ),
     );

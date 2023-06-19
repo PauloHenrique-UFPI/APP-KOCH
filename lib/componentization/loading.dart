@@ -12,7 +12,7 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(seconds: 3), // Alterado para 3 segundos
+      duration: const Duration(seconds: 3),
       curve: Curves.fastLinearToSlowEaseIn,
       child: Dialog(
         shape: RoundedRectangleBorder(
