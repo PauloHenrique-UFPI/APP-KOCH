@@ -28,8 +28,7 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
     color: Colors.red,
     size: 50.0,
   );
-  File? image;
-  File? croppedFile;
+  File? _image;
 
   Future add(
       String titulo, String img, String desc_curta, String desc_longa) async {
@@ -106,45 +105,26 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
       );
     }
 
-    Future<void> cropImage() async {
-      if (image != null) {
-        final croppedFile = await ImageCropper().cropImage(
-          sourcePath: image!.path,
-          compressQuality: 100,
-          maxHeight: 1024,
-          maxWidth: 1024,
-          uiSettings: [
-            AndroidUiSettings(
-              toolbarTitle: 'Cropper',
-              toolbarColor: Colors.red,
-              toolbarWidgetColor: Colors.white,
-              initAspectRatio: CropAspectRatioPreset.original,
-              lockAspectRatio: false,
-            ),
-          ],
-        );
-        print('Image Loaded');
-        if (croppedFile != null) {
-          setState(() {
-            image = File(croppedFile.path);
-          });
-        }
-      }
+    Future<File?> _cropImage({required File imageFile}) async {
+      CroppedFile? croppedImage =
+          await ImageCropper().cropImage(sourcePath: imageFile.path);
+      if (croppedImage == null) return null;
+      return File(croppedImage.path);
     }
 
-    Future pickImage() async {
+    Future _pickImage(ImageSource source) async {
       try {
-        final imagePicker = ImagePicker();
-        final image = await imagePicker.pickImage(source: ImageSource.gallery);
+        final image = await ImagePicker().pickImage(source: source);
         if (image == null) {
-          return this.image;
+          return;
         }
-        final imageTemp = File(image.path);
-        setState(() => this.image = imageTemp);
-        cropImage();
-        return this.image;
+        File? img = File(image.path);
+        img = await _cropImage(imageFile: img);
+        setState(() {
+          _image = img;
+        });
       } on PlatformException catch (e) {
-        print('Failed to pick image: $e');
+        print(e);
       }
     }
 
@@ -221,14 +201,19 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
                       ]),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 10,
                     ),
-                    if (image != null) Image.file(image!),
+                    if (_image != null)
+                      Image.file(
+                        _image!,
+                        height: 300,
+                        width: 300,
+                      ),
                     const SizedBox(
-                      height: 30,
+                      height: 10,
                     ),
                     ElevatedButton(
-                      onPressed: pickImage,
+                      onPressed: () => _pickImage(ImageSource.gallery),
                       child: const Text(
                         "Selecione uma imagem da galeria",
                         style: TextStyle(
