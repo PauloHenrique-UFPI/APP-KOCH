@@ -141,14 +141,12 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
             ),
             actions: <Widget>[
               IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
-              //Customizavel(),
             ],
             leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
               },
               icon: const Icon(Icons.arrow_back),
-              //replace with our own icon data.
             )),
         body: SingleChildScrollView(
           child: Center(
@@ -169,9 +167,11 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
                         labelText: 'Titulo *',
                       ),
                       onSaved: (String? value) {},
-                      validator: (value) => validacaoCompleta([
-                        () => isNotEmpty(value),
-                      ]),
+                      validator: (value) => validacaoCompleta(
+                        [
+                          () => isNotEmpty(value),
+                        ],
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -182,9 +182,11 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
                         hintText: 'Breve Descrição da noticia',
                         labelText: 'Prefácio *',
                       ),
-                      validator: (value) => validacaoCompleta([
-                        () => isNotEmpty(value),
-                      ]),
+                      validator: (value) => validacaoCompleta(
+                        [
+                          () => isNotEmpty(value),
+                        ],
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -196,9 +198,11 @@ class _AddNoticiaState extends State<AddNoticia> with ValidationsMixin {
                         border: OutlineInputBorder(),
                         labelText: "Noticia Completa *",
                       ),
-                      validator: (value) => validacaoCompleta([
-                        () => isNotEmpty(value),
-                      ]),
+                      validator: (value) => validacaoCompleta(
+                        [
+                          () => isNotEmpty(value),
+                        ],
+                      ),
                     ),
                     const SizedBox(
                       height: 10,

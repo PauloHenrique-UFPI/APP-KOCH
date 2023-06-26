@@ -222,8 +222,6 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
           return AlertDialog(
             title: const Text('Alerta'),
             content: Text(mensagem),
-            // title: const Text('ERRO'),
-            // content: const Text('Erro no servidor:'),
             actions: [
               TextButton(
                 child: const Text('OK'),
@@ -247,8 +245,6 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
           return AlertDialog(
             title: const Text('Alerta'),
             content: Text('$error'),
-            // title: const Text('ERRO'),
-            // content: const Text('Erro no servidor:'),
             actions: [
               TextButton(
                 child: const Text('OK'),
@@ -271,9 +267,11 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
       lastDate: DateTime(2100),
     );
     if (picked != null) {
-      setState(() {
-        _dateController.text = DateFormat.yMd().format(picked);
-      });
+      setState(
+        () {
+          _dateController.text = DateFormat.yMd().format(picked);
+        },
+      );
     }
   }
 
@@ -295,12 +293,14 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
               DropdownButton(
                 value: tipoEntradaValue,
                 icon: const Icon(Icons.keyboard_arrow_down),
-                items: tipoEntrada.map((String tipoEntrada) {
-                  return DropdownMenuItem(
-                    value: tipoEntrada,
-                    child: Text(tipoEntrada),
-                  );
-                }).toList(),
+                items: tipoEntrada.map(
+                  (String tipoEntrada) {
+                    return DropdownMenuItem(
+                      value: tipoEntrada,
+                      child: Text(tipoEntrada),
+                    );
+                  },
+                ).toList(),
                 onChanged: (String? newValue) {
                   setState(
                     () {
@@ -322,12 +322,14 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
               DropdownButton(
                 value: populacoesEspeciaisValue,
                 icon: const Icon(Icons.keyboard_arrow_down),
-                items: populacoesEspeciais.map((String populacoesEspeciais) {
-                  return DropdownMenuItem(
-                    value: populacoesEspeciais,
-                    child: Text(populacoesEspeciais),
-                  );
-                }).toList(),
+                items: populacoesEspeciais.map(
+                  (String populacoesEspeciais) {
+                    return DropdownMenuItem(
+                      value: populacoesEspeciais,
+                      child: Text(populacoesEspeciais),
+                    );
+                  },
+                ).toList(),
                 onChanged: (String? newValue) {
                   setState(
                     () {
@@ -349,12 +351,14 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
               DropdownButton(
                 value: beneficiarioValue,
                 icon: const Icon(Icons.keyboard_arrow_down),
-                items: beneficiario.map((String beneficiario) {
-                  return DropdownMenuItem(
-                    value: beneficiario,
-                    child: Text(beneficiario),
-                  );
-                }).toList(),
+                items: beneficiario.map(
+                  (String beneficiario) {
+                    return DropdownMenuItem(
+                      value: beneficiario,
+                      child: Text(beneficiario),
+                    );
+                  },
+                ).toList(),
                 onChanged: (String? newValue) {
                   setState(
                     () {
@@ -376,12 +380,14 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
               DropdownButton(
                 value: seExtrapulmonarValue,
                 icon: const Icon(Icons.keyboard_arrow_down),
-                items: seExtrapulmonar.map((String seExtrapulmonar) {
-                  return DropdownMenuItem(
-                    value: seExtrapulmonar,
-                    child: Text(seExtrapulmonar),
-                  );
-                }).toList(),
+                items: seExtrapulmonar.map(
+                  (String seExtrapulmonar) {
+                    return DropdownMenuItem(
+                      value: seExtrapulmonar,
+                      child: Text(seExtrapulmonar),
+                    );
+                  },
+                ).toList(),
                 onChanged: (String? newValue) {
                   setState(
                     () {
@@ -403,12 +409,14 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
               DropdownButton(
                 value: formaValue,
                 icon: const Icon(Icons.keyboard_arrow_down),
-                items: forma.map((String forma) {
-                  return DropdownMenuItem(
-                    value: forma,
-                    child: Text(forma),
-                  );
-                }).toList(),
+                items: forma.map(
+                  (String forma) {
+                    return DropdownMenuItem(
+                      value: forma,
+                      child: Text(forma),
+                    );
+                  },
+                ).toList(),
                 onChanged: (String? newValue) {
                   setState(
                     () {
@@ -440,12 +448,14 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
               DropdownButton(
                 value: doencaAgravaosValue,
                 icon: const Icon(Icons.keyboard_arrow_down),
-                items: doencaAgravaos.map((String doencaAgravaos) {
-                  return DropdownMenuItem(
-                    value: doencaAgravaos,
-                    child: Text(doencaAgravaos),
-                  );
-                }).toList(),
+                items: doencaAgravaos.map(
+                  (String doencaAgravaos) {
+                    return DropdownMenuItem(
+                      value: doencaAgravaos,
+                      child: Text(doencaAgravaos),
+                    );
+                  },
+                ).toList(),
                 onChanged: (String? newValue) {
                   setState(
                     () {
@@ -467,13 +477,14 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
               DropdownButton(
                 value: baciloscopiaDiagnosticoValue,
                 icon: const Icon(Icons.keyboard_arrow_down),
-                items: baciloscopiaDiagnostico
-                    .map((String baciloscopiaDiagnostico) {
-                  return DropdownMenuItem(
-                    value: baciloscopiaDiagnostico,
-                    child: Text(baciloscopiaDiagnostico),
-                  );
-                }).toList(),
+                items: baciloscopiaDiagnostico.map(
+                  (String baciloscopiaDiagnostico) {
+                    return DropdownMenuItem(
+                      value: baciloscopiaDiagnostico,
+                      child: Text(baciloscopiaDiagnostico),
+                    );
+                  },
+                ).toList(),
                 onChanged: (String? newValue) {
                   setState(
                     () {
@@ -495,12 +506,14 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
               DropdownButton(
                 value: radiografiaToraxValue,
                 icon: const Icon(Icons.keyboard_arrow_down),
-                items: radiografiaTorax.map((String radiografiaTorax) {
-                  return DropdownMenuItem(
-                    value: radiografiaTorax,
-                    child: Text(radiografiaTorax),
-                  );
-                }).toList(),
+                items: radiografiaTorax.map(
+                  (String radiografiaTorax) {
+                    return DropdownMenuItem(
+                      value: radiografiaTorax,
+                      child: Text(radiografiaTorax),
+                    );
+                  },
+                ).toList(),
                 onChanged: (String? newValue) {
                   setState(
                     () {
@@ -549,12 +562,14 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
               DropdownButton(
                 value: terapiaValue,
                 icon: const Icon(Icons.keyboard_arrow_down),
-                items: terapia.map((String terapia) {
-                  return DropdownMenuItem(
-                    value: terapia,
-                    child: Text(terapia),
-                  );
-                }).toList(),
+                items: terapia.map(
+                  (String terapia) {
+                    return DropdownMenuItem(
+                      value: terapia,
+                      child: Text(terapia),
+                    );
+                  },
+                ).toList(),
                 onChanged: (String? newValue) {
                   setState(
                     () {
@@ -567,140 +582,146 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
           ),
         ),
         Step(
-            state:
-                _activeStepIndex <= 2 ? StepState.editing : StepState.complete,
-            isActive: _activeStepIndex >= 2,
-            title: const Text('Parte 3'),
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "Histopatologia",
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                DropdownButton(
-                  value: histopatologiaValue,
-                  icon: const Icon(Icons.keyboard_arrow_down),
-                  items: histopatologia.map((String histopatologia) {
+          state: _activeStepIndex <= 2 ? StepState.editing : StepState.complete,
+          isActive: _activeStepIndex >= 2,
+          title: const Text('Parte 3'),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Histopatologia",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              DropdownButton(
+                value: histopatologiaValue,
+                icon: const Icon(Icons.keyboard_arrow_down),
+                items: histopatologia.map(
+                  (String histopatologia) {
                     return DropdownMenuItem(
                       value: histopatologia,
                       child: Text(histopatologia),
                     );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(
-                      () {
-                        histopatologiaValue = newValue!;
-                      },
-                    );
                   },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  "Cultura",
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                DropdownButton(
-                  value: culturaValue,
-                  icon: const Icon(Icons.keyboard_arrow_down),
-                  items: cultura.map((String cultura) {
+                ).toList(),
+                onChanged: (String? newValue) {
+                  setState(
+                    () {
+                      histopatologiaValue = newValue!;
+                    },
+                  );
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                "Cultura",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              DropdownButton(
+                value: culturaValue,
+                icon: const Icon(Icons.keyboard_arrow_down),
+                items: cultura.map(
+                  (String cultura) {
                     return DropdownMenuItem(
                       value: cultura,
                       child: Text(cultura),
                     );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(
-                      () {
-                        culturaValue = newValue!;
-                      },
-                    );
                   },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  "Teste de Sensibilidade",
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                DropdownButton(
-                  value: testeSensibilidadeValue,
-                  icon: const Icon(Icons.keyboard_arrow_down),
-                  items: testeSensibilidade.map((String testeSensibilidade) {
+                ).toList(),
+                onChanged: (String? newValue) {
+                  setState(
+                    () {
+                      culturaValue = newValue!;
+                    },
+                  );
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                "Teste de Sensibilidade",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              DropdownButton(
+                value: testeSensibilidadeValue,
+                icon: const Icon(Icons.keyboard_arrow_down),
+                items: testeSensibilidade.map(
+                  (String testeSensibilidade) {
                     return DropdownMenuItem(
                       value: testeSensibilidade,
                       child: Text(testeSensibilidade),
                     );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(
-                      () {
-                        testeSensibilidadeValue = newValue!;
-                      },
-                    );
                   },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  "Total de Contatos Identificados",
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                DropdownButton(
-                  value: contatosIdentificadosValue,
-                  icon: const Icon(Icons.keyboard_arrow_down),
-                  items:
-                      contatosIdentificados.map((String contatosIdentificados) {
+                ).toList(),
+                onChanged: (String? newValue) {
+                  setState(
+                    () {
+                      testeSensibilidadeValue = newValue!;
+                    },
+                  );
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                "Total de Contatos Identificados",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              DropdownButton(
+                value: contatosIdentificadosValue,
+                icon: const Icon(Icons.keyboard_arrow_down),
+                items: contatosIdentificados.map(
+                  (String contatosIdentificados) {
                     return DropdownMenuItem(
                       value: contatosIdentificados,
                       child: Text(contatosIdentificados),
                     );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(
-                      () {
-                        contatosIdentificadosValue = newValue!;
-                      },
-                    );
                   },
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                GestureDetector(
-                  onTap: () => _selectDate(context),
-                  child: AbsorbPointer(
-                    child: TextFormField(
-                      controller: _dateController,
-                      keyboardType: TextInputType.datetime,
-                      decoration: const InputDecoration(
-                        labelText: 'Data de Nascimento',
-                        hintText: 'Escolha uma data',
-                        prefixIcon: Icon(Icons.calendar_today),
-                      ),
+                ).toList(),
+                onChanged: (String? newValue) {
+                  setState(
+                    () {
+                      contatosIdentificadosValue = newValue!;
+                    },
+                  );
+                },
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              GestureDetector(
+                onTap: () => _selectDate(context),
+                child: AbsorbPointer(
+                  child: TextFormField(
+                    controller: _dateController,
+                    keyboardType: TextInputType.datetime,
+                    decoration: const InputDecoration(
+                      labelText: 'Data de Ingresso',
+                      hintText: 'Escolha uma data',
+                      prefixIcon: Icon(Icons.calendar_today),
                     ),
                   ),
                 ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
       ];
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -709,22 +730,22 @@ class _AddProntuarioState extends State<AddProntuario> with ValidationsMixin {
       ),
       home: Scaffold(
         appBar: AppBar(
-            title: const Text(
-              'TB-Koch',
-              style: TextStyle(
-                  fontSize: 12.0, color: Color.fromARGB(255, 26, 25, 25)),
-            ),
-            actions: <Widget>[
-              IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
-              //Customizavel(),
-            ],
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.arrow_back),
-              //replace with our own icon data.
-            )),
+          title: const Text(
+            'TB-Koch',
+            style: TextStyle(
+                fontSize: 12.0, color: Color.fromARGB(255, 26, 25, 25)),
+          ),
+          actions: <Widget>[
+            IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
+            //Customizavel(),
+          ],
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back),
+          ),
+        ),
         body: Form(
           key: _formKey,
           child: Stepper(

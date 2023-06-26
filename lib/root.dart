@@ -21,9 +21,11 @@ class _RootState extends State<Root> {
 
   _onTap(int tab) {
     if (_currentIndex != tab) {
-      setState(() {
-        _currentIndex = tab;
-      });
+      setState(
+        () {
+          _currentIndex = tab;
+        },
+      );
     }
   }
 
@@ -54,22 +56,23 @@ class _RootState extends State<Root> {
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: _onTap,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.people),
-              label: "Contatos",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.list),
-              label: "Pacientes",
-            )
-          ]),
+        currentIndex: _currentIndex,
+        onTap: _onTap,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: "Contatos",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: "Pacientes",
+          ),
+        ],
+      ),
     );
   }
 }

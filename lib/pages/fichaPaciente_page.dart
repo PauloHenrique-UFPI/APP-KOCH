@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:koch_app/models/paciente.dart';
@@ -80,13 +78,14 @@ class _FichaPageState extends State<FichaPage> {
                       style: _style(),
                     ),
                     TextField(
-                        readOnly: true,
-                        controller:
-                            TextEditingController(text: widget.paciente.nome),
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.all(16),
-                        )),
+                      readOnly: true,
+                      controller:
+                          TextEditingController(text: widget.paciente.nome),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      ),
+                    ),
                     const SizedBox(
                       height: 5,
                     ),
@@ -106,34 +105,37 @@ class _FichaPageState extends State<FichaPage> {
                     ),
                     Text('Nome da Mãe:', style: _style()),
                     TextField(
-                        readOnly: true,
-                        controller: TextEditingController(
-                            text: widget.paciente.nomeMae),
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.all(16),
-                        )),
+                      readOnly: true,
+                      controller:
+                          TextEditingController(text: widget.paciente.nomeMae),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      ),
+                    ),
                     Text('Telefone:', style: _style()),
                     TextField(
-                        readOnly: true,
-                        controller: TextEditingController(
-                            text: widget.paciente.telefone),
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.all(16),
-                        )),
+                      readOnly: true,
+                      controller:
+                          TextEditingController(text: widget.paciente.telefone),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      ),
+                    ),
                     const SizedBox(
                       height: 5,
                     ),
                     Text('Endereço:', style: _style()),
                     TextField(
-                        readOnly: true,
-                        controller: TextEditingController(
-                            text: widget.paciente.endereco),
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.all(16),
-                        )),
+                      readOnly: true,
+                      controller:
+                          TextEditingController(text: widget.paciente.endereco),
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.all(16),
+                      ),
+                    ),
                     Text('Imagem de Exame:', style: _style()),
                     AspectRatio(
                       aspectRatio: 1,

@@ -21,12 +21,6 @@ class HomePageState extends State<HomePage> {
       noticiasRepository:
           NoticiasRepository(restClient: GetIt.I.get<RestClient>()));
 
-  // @override
-  // void dispose() {
-  //   controller.dispose();
-  //   super.dispose();
-  // }
-
   @override
   void initState() {
     controller.buscarNoticia();
@@ -36,25 +30,26 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: controller,
-        builder: (_, __) {
-          if (controller.loading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          return Scaffold(
-            body: Container(
-              padding: const EdgeInsets.all(20),
-              child: _Body(noticias: controller.noticias),
-            ),
-            floatingActionButton: FloatingActionButton(
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
-              onPressed: () =>
-                  {Navigator.pushNamed(context, AddNoticiaViewRoute)},
-              child: const Icon(Icons.add),
-            ),
-          );
-        });
+      animation: controller,
+      builder: (_, __) {
+        if (controller.loading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return Scaffold(
+          body: Container(
+            padding: const EdgeInsets.all(20),
+            child: _Body(noticias: controller.noticias),
+          ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.white,
+            onPressed: () =>
+                {Navigator.pushNamed(context, AddNoticiaViewRoute)},
+            child: const Icon(Icons.add),
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -65,20 +60,21 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: noticias.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => {
-              Navigator.pushNamed(context, NoticiaCompletaViewRoute,
-                  arguments: noticias[index]),
-            },
-            child: Card(
-              elevation: 5.0,
-              margin: const EdgeInsets.all(8.0),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 12, right: 12, top: 10, bottom: 12),
-                child: Column(children: <Widget>[
+      itemCount: noticias.length,
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () => {
+            Navigator.pushNamed(context, NoticiaCompletaViewRoute,
+                arguments: noticias[index]),
+          },
+          child: Card(
+            elevation: 5.0,
+            margin: const EdgeInsets.all(8.0),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  left: 12, right: 12, top: 10, bottom: 12),
+              child: Column(
+                children: <Widget>[
                   ListTile(
                     title: Image(image: NetworkImage(noticias[index].img)),
                     textColor: Colors.white,
@@ -101,11 +97,13 @@ class _Body extends StatelessWidget {
                   ListTile(
                     title: Text(noticias[index].desCurta),
                   ),
-                ]),
+                ],
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
 

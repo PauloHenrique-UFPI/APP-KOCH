@@ -71,7 +71,7 @@ class SearchUser extends SearchDelegate {
                             fontSize: 18, fontWeight: FontWeight.w600),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             );

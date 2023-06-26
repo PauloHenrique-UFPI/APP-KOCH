@@ -3,7 +3,6 @@ import 'package:get_it/get_it.dart';
 import 'package:koch_app/pages/login_page.dart';
 import 'package:koch_app/root.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../models/rest_client.dart';
 
 class PaginaInicial extends StatefulWidget {
@@ -17,23 +16,27 @@ class _PaginaInicial extends State<PaginaInicial> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((duration) {
-      verificaUsuario().then((temUsuario) {
-        if (temUsuario) {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const Root()),
-            (route) => false,
-          );
-        } else {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const LoginPage()),
-            (route) => false,
-          );
-        }
-      });
-    });
+    WidgetsBinding.instance.addPostFrameCallback(
+      (duration) {
+        verificaUsuario().then(
+          (temUsuario) {
+            if (temUsuario) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const Root()),
+                (route) => false,
+              );
+            } else {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+                (route) => false,
+              );
+            }
+          },
+        );
+      },
+    );
   }
 
   @override

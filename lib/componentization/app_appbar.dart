@@ -9,24 +9,25 @@ AppBar compAppBar() {
     ),
     actions: <Widget>[
       IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
-      //Customizavel(),
     ],
   );
 }
 
 BottomNavigationBar navbar() {
-  return BottomNavigationBar(items: const [
-    BottomNavigationBarItem(
-      icon: Icon(Icons.people),
-      label: "Contatos",
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      label: "Home",
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.list),
-      label: "Pacientes",
-    )
-  ]);
+  return BottomNavigationBar(
+    items: const [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.people),
+        label: "Contatos",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: "Home",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.list),
+        label: "Pacientes",
+      )
+    ],
+  );
 }

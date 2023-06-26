@@ -90,8 +90,6 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
           return AlertDialog(
             title: const Text('Alerta'),
             content: Text(mensagem),
-            // title: const Text('ERRO'),
-            // content: const Text('Erro no servidor:'),
             actions: [
               TextButton(
                 child: const Text('OK'),
@@ -115,8 +113,6 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
           return AlertDialog(
             title: const Text('Alerta'),
             content: Text('$error'),
-            // title: const Text('ERRO'),
-            // content: const Text('Erro no servidor:'),
             actions: [
               TextButton(
                 child: const Text('OK'),
@@ -139,9 +135,11 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
       lastDate: DateTime(2100),
     );
     if (picked != null) {
-      setState(() {
-        _dateController.text = DateFormat.yMd().format(picked);
-      });
+      setState(
+        () {
+          _dateController.text = DateFormat.yMd().format(picked);
+        },
+      );
     }
   }
 
@@ -150,219 +148,245 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
           state: _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 0,
           title: const Text('Dados Pessoais'),
-          content: Column(children: [
-            TextFormField(
-              controller: _nome,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Nome Completo",
+          content: Column(
+            children: [
+              TextFormField(
+                controller: _nome,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Nome Completo",
+                ),
+                validator: (value) => validacaoCompleta(
+                  [
+                    () => isNotEmpty(value),
+                  ],
+                ),
               ),
-              validator: (value) => validacaoCompleta([
-                () => isNotEmpty(value),
-              ]),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            GestureDetector(
-              onTap: () => _selectDate(context),
-              child: AbsorbPointer(
-                child: TextFormField(
-                  controller: _dateController,
-                  keyboardType: TextInputType.datetime,
-                  decoration: const InputDecoration(
-                    labelText: 'Data de Nascimento',
-                    hintText: 'Escolha uma data',
-                    prefixIcon: Icon(Icons.calendar_today),
+              const SizedBox(
+                height: 8,
+              ),
+              GestureDetector(
+                onTap: () => _selectDate(context),
+                child: AbsorbPointer(
+                  child: TextFormField(
+                    controller: _dateController,
+                    keyboardType: TextInputType.datetime,
+                    decoration: const InputDecoration(
+                      labelText: 'Data de Nascimento',
+                      hintText: 'Escolha uma data',
+                      prefixIcon: Icon(Icons.calendar_today),
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            TextFormField(
-              controller: _naturalidade,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Naturalidade",
+              const SizedBox(
+                height: 8,
               ),
-            ),
-            const SizedBox(height: 8),
-            TextFormField(
-              controller: _profissao,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: "Profissão"),
-              validator: (value) => validacaoCompleta([
-                () => isNotEmpty(value),
-              ]),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            TextFormField(
-              controller: _nomeMae,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Nome da Mãe",
+              TextFormField(
+                controller: _naturalidade,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Naturalidade",
+                ),
               ),
-              validator: (value) => validacaoCompleta([
-                () => isNotEmpty(value),
-              ]),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            TextFormField(
-              controller: _forma,
-              keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Forma: ",
+              const SizedBox(height: 8),
+              TextFormField(
+                controller: _profissao,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), labelText: "Profissão"),
+                validator: (value) => validacaoCompleta(
+                  [
+                    () => isNotEmpty(value),
+                  ],
+                ),
               ),
-              validator: (value) => validacaoCompleta([
-                () => isNotEmpty(value),
-              ]),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            const Text(
-              "1 - Pulmonar  2 - Negativa  3 - Não Realizada 4 - Não se Aplica",
-              style: TextStyle(fontSize: 12),
-            ),
-          ]),
+              const SizedBox(
+                height: 8,
+              ),
+              TextFormField(
+                controller: _nomeMae,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Nome da Mãe",
+                ),
+                validator: (value) => validacaoCompleta(
+                  [
+                    () => isNotEmpty(value),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              TextFormField(
+                controller: _forma,
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Forma: ",
+                ),
+                validator: (value) => validacaoCompleta(
+                  [
+                    () => isNotEmpty(value),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              const Text(
+                "1 - Pulmonar  2 - Negativa  3 - Não Realizada 4 - Não se Aplica",
+                style: TextStyle(fontSize: 12),
+              ),
+            ],
+          ),
         ),
         Step(
           state: _activeStepIndex <= 1 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 1,
           title: const Text('Endereço'),
-          content: Column(children: [
-            TextFormField(
-              controller: _endreco,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Endereço",
+          content: Column(
+            children: [
+              TextFormField(
+                controller: _endreco,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Endereço",
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            TextFormField(
-              controller: _municipio,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Municipio",
+              const SizedBox(
+                height: 8,
               ),
-              validator: (value) => validacaoCompleta([
-                () => isNotEmpty(value),
-              ]),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            TextFormField(
-              controller: _pontoRef,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Ponto de Referencia",
+              TextFormField(
+                controller: _municipio,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Municipio",
+                ),
+                validator: (value) => validacaoCompleta(
+                  [
+                    () => isNotEmpty(value),
+                  ],
+                ),
               ),
-              validator: (value) => validacaoCompleta([
-                () => isNotEmpty(value),
-              ]),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            TextFormField(
-              controller: _telefone,
-              keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Telefone: ",
+              const SizedBox(
+                height: 8,
               ),
-              validator: (value) => validacaoCompleta([
-                () => isNotEmpty(value),
-              ]),
-            ),
-          ]),
+              TextFormField(
+                controller: _pontoRef,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Ponto de Referencia",
+                ),
+                validator: (value) => validacaoCompleta(
+                  [
+                    () => isNotEmpty(value),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              TextFormField(
+                controller: _telefone,
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Telefone: ",
+                ),
+                validator: (value) => validacaoCompleta(
+                  [
+                    () => isNotEmpty(value),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
         Step(
-            state:
-                _activeStepIndex <= 2 ? StepState.editing : StepState.complete,
-            isActive: _activeStepIndex >= 2,
-            title: const Text('SUS'),
-            content: Column(
-              children: [
-                TextFormField(
-                  controller: _cartaosus,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                    FilteringTextInputFormatter.digitsOnly,
+          state: _activeStepIndex <= 2 ? StepState.editing : StepState.complete,
+          isActive: _activeStepIndex >= 2,
+          title: const Text('SUS'),
+          content: Column(
+            children: [
+              TextFormField(
+                controller: _cartaosus,
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Numero do Cartão do SUS: ",
+                ),
+                validator: (value) => validacaoCompleta(
+                  [
+                    () => isNotEmpty(value),
                   ],
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Numero do Cartão do SUS: ",
-                  ),
-                  validator: (value) => validacaoCompleta([
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              TextFormField(
+                controller: _numSinan,
+                keyboardType: TextInputType.number,
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Número do Sinan: ",
+                ),
+                validator: (value) => validacaoCompleta(
+                  [
                     () => isNotEmpty(value),
-                  ]),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                TextFormField(
-                  controller: _numSinan,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                    FilteringTextInputFormatter.digitsOnly,
                   ],
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Número do Sinan: ",
-                  ),
-                  validator: (value) => validacaoCompleta([
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              TextFormField(
+                controller: _unidTratamento,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Unidade de Tratamento",
+                ),
+                validator: (value) => validacaoCompleta(
+                  [
                     () => isNotEmpty(value),
-                  ]),
+                  ],
                 ),
-                const SizedBox(
-                  height: 8,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              TextFormField(
+                controller: _unidCadastro,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "Unidade de Cadastro",
                 ),
-                TextFormField(
-                  controller: _unidTratamento,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Unidade de Tratamento",
-                  ),
-                  validator: (value) => validacaoCompleta([
+                validator: (value) => validacaoCompleta(
+                  [
                     () => isNotEmpty(value),
-                  ]),
+                  ],
                 ),
-                const SizedBox(
-                  height: 8,
-                ),
-                TextFormField(
-                  controller: _unidCadastro,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Unidade de Cadastro",
-                  ),
-                  validator: (value) => validacaoCompleta([
-                    () => isNotEmpty(value),
-                  ]),
-                ),
-              ],
-            )),
+              ),
+            ],
+          ),
+        ),
       ];
 
   @override
@@ -373,22 +397,23 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
       ),
       home: Scaffold(
         appBar: AppBar(
-            title: const Text(
-              'TB-Koch',
-              style: TextStyle(
-                  fontSize: 16.0, color: Color.fromARGB(255, 26, 25, 25)),
-            ),
-            actions: <Widget>[
-              IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
-              //Customizavel(),
-            ],
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.arrow_back),
-              //replace with our own icon data.
-            )),
+          title: const Text(
+            'TB-Koch',
+            style: TextStyle(
+                fontSize: 16.0, color: Color.fromARGB(255, 26, 25, 25)),
+          ),
+          actions: <Widget>[
+            IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
+            //Customizavel(),
+          ],
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back),
+            //replace with our own icon data.
+          ),
+        ),
         body: Form(
           key: _formKey,
           child: Stepper(

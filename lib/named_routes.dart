@@ -9,3 +9,4 @@ const String AddNoticiaViewRoute = '/addNoticia';
 const String InitialViemRoute = '/inicial';
 const String ProntuarioViewRoute = '/prontuario';
 const String AddProntuarioViewRoute = '/addProntuario';
+const String EditProfileViewRoute = '/editProfile';

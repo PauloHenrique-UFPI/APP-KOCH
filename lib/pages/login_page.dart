@@ -79,62 +79,63 @@ class _LoginPageState extends State<LoginPage> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 250,
-                      height: 250,
-                      child: Image.asset("assets/images/LOGO_TB_KOCH.png"),
-                    ),
-                    Container(
-                      height: 20,
-                    ),
-                    Container(
-                      height: 15,
-                    ),
-                    TextFormField(
-                      controller: _email,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                          labelText: 'Email',
-                          hintText: 'nome@gmail.com',
-                          border: OutlineInputBorder()),
-                      validator: (email) {
-                        if (email == null || email.isEmpty) {
-                          return 'Digite seu e-mail';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      controller: _senha,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                          labelText: 'Senha', border: OutlineInputBorder()),
-                      validator: (senha) {
-                        if (senha == null || senha.isEmpty) {
-                          return 'Digite sua senha';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    BlockButton(
-                        icon: Icons.logout,
-                        label: 'Entrar',
-                        probutton: 300,
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            login(_email.text, _senha.text);
-                          }
-                        })
-                    //
-                  ]),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 250,
+                    height: 250,
+                    child: Image.asset("assets/images/LOGO_TB_KOCH.png"),
+                  ),
+                  Container(
+                    height: 20,
+                  ),
+                  Container(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    controller: _email,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                        labelText: 'Email',
+                        hintText: 'nome@gmail.com',
+                        border: OutlineInputBorder()),
+                    validator: (email) {
+                      if (email == null || email.isEmpty) {
+                        return 'Digite seu e-mail';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextFormField(
+                    controller: _senha,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                        labelText: 'Senha', border: OutlineInputBorder()),
+                    validator: (senha) {
+                      if (senha == null || senha.isEmpty) {
+                        return 'Digite sua senha';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  BlockButton(
+                    icon: Icons.logout,
+                    label: 'Entrar',
+                    probutton: 300,
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        login(_email.text, _senha.text);
+                      }
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

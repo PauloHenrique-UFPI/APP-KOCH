@@ -18,12 +18,6 @@ class PacientePageState extends State<PacientePage> {
   final controller = ControllerPaciente(
       pacienteRepository: PacienteRepository(restClient: DioClient()));
 
-  // @override
-  // void dispose() {
-  //   controller.dispose();
-  //   super.dispose();
-  // }
-
   @override
   void initState() {
     controller.buscarPacientes();
@@ -33,15 +27,17 @@ class PacientePageState extends State<PacientePage> {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: controller,
-        builder: (_, __) {
-          if (controller.loading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      animation: controller,
+      builder: (_, __) {
+        if (controller.loading) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-          return Scaffold(
-            appBar:
-                AppBar(elevation: 1, backgroundColor: Colors.white, actions: [
+        return Scaffold(
+          appBar: AppBar(
+            elevation: 1,
+            backgroundColor: Colors.white,
+            actions: [
               if (controller.searshing)
                 Expanded(
                   child: Padding(
@@ -68,21 +64,22 @@ class PacientePageState extends State<PacientePage> {
                     ? const Icon(Icons.close)
                     : const Icon(Icons.search_sharp),
               ),
-            ]),
-            //AQUI E O BODY DA APLICAÇÂO
-            body: Container(
-              padding: const EdgeInsets.all(20),
-              child: _Body(pacientes: controller.pacientes),
-            ),
-            floatingActionButton: FloatingActionButton(
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
-              onPressed: () =>
-                  {Navigator.pushNamed(context, AddPacienteViewRoute)},
-              child: const Icon(Icons.add),
-            ),
-          );
-        });
+            ],
+          ),
+          body: Container(
+            padding: const EdgeInsets.all(20),
+            child: _Body(pacientes: controller.pacientes),
+          ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.white,
+            onPressed: () =>
+                {Navigator.pushNamed(context, AddPacienteViewRoute)},
+            child: const Icon(Icons.add),
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -93,20 +90,21 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: pacientes.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => {
-              Navigator.pushNamed(context, FichaViewRoute,
-                  arguments: pacientes[index]),
-            },
-            child: Card(
-              elevation: 5.0,
-              margin: const EdgeInsets.all(8.0),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 12, right: 12, top: 10, bottom: 12),
-                child: Column(children: <Widget>[
+      itemCount: pacientes.length,
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () => {
+            Navigator.pushNamed(context, FichaViewRoute,
+                arguments: pacientes[index]),
+          },
+          child: Card(
+            elevation: 5.0,
+            margin: const EdgeInsets.all(8.0),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  left: 12, right: 12, top: 10, bottom: 12),
+              child: Column(
+                children: <Widget>[
                   ListTile(
                     title: Text(pacientes[index].nome),
                     textColor: Colors.white,
@@ -117,11 +115,13 @@ class _Body extends StatelessWidget {
                   ),
                   ListTile(
                     title: Text(pacientes[index].unidadeTratamento),
-                  )
-                ]),
+                  ),
+                ],
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
