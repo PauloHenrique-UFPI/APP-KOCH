@@ -1,6 +1,12 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:koch_app/componentization/loading.dart';
 import 'package:koch_app/validations_mixin.dart';
@@ -32,6 +38,7 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
   final _numSinan = TextEditingController();
   final _unidTratamento = TextEditingController();
   final _unidCadastro = TextEditingController();
+  late var _imgTrat;
   final httpClient = GetIt.I.get<RestClient>();
 
   Future add(
@@ -48,7 +55,8 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
       String telefone,
       String nSinan,
       String unidadeTratamento,
-      String unidadeCadastro) async {
+      String unidadeCadastro,
+      [text]) async {
     String mensagem;
     int intTryParse = int.tryParse(forma) ?? 0;
 
@@ -78,7 +86,8 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
           "telefone": telefone,
           "n_sinan": nSinan,
           "unidade_tratamento": unidadeTratamento,
-          "unidade_cad": unidadeCadastro
+          "unidade_cad": unidadeCadastro,
+          "imgTrat": _imgTrat,
         },
       );
 
@@ -124,6 +133,29 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
           );
         },
       );
+    }
+  }
+
+  Future<File?> _cropImage({required File imageFile}) async {
+    CroppedFile? croppedImage =
+        await ImageCropper().cropImage(sourcePath: imageFile.path);
+    if (croppedImage == null) return null;
+    return File(croppedImage.path);
+  }
+
+  Future _pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) {
+        return;
+      }
+      File? img = File(image.path);
+      img = await _cropImage(imageFile: img);
+      setState(() {
+        _imgTrat = img;
+      });
+    } on PlatformException catch (e) {
+      print(e);
     }
   }
 
@@ -384,6 +416,24 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
                   ],
                 ),
               ),
+              if (_imgTrat != null)
+                Image.file(
+                  _imgTrat!,
+                  height: 250,
+                  width: 250,
+                ),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                onPressed: () => _pickImage(ImageSource.gallery),
+                child: const Text(
+                  "Adicionar Imagem Laboratorial",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -426,20 +476,22 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
               } else {
                 if (_formKey.currentState!.validate()) {
                   add(
-                      _nome.text,
-                      _dateController.text,
-                      _naturalidade.text,
-                      _profissao.text,
-                      _nomeMae.text,
-                      _forma.text,
-                      _cartaosus.text,
-                      _endreco.text,
-                      _municipio.text,
-                      _pontoRef.text,
-                      _telefone.text,
-                      _numSinan.text,
-                      _unidTratamento.text,
-                      _unidCadastro.text);
+                    _nome.text,
+                    _dateController.text,
+                    _naturalidade.text,
+                    _profissao.text,
+                    _nomeMae.text,
+                    _forma.text,
+                    _cartaosus.text,
+                    _endreco.text,
+                    _municipio.text,
+                    _pontoRef.text,
+                    _telefone.text,
+                    _numSinan.text,
+                    _unidTratamento.text,
+                    _unidCadastro.text,
+                    _imgTrat.text,
+                  );
                 }
               }
               setState(() {});

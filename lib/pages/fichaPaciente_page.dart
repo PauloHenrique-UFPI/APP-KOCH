@@ -1,9 +1,15 @@
+// ignore_for_file: file_names
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
+
 import 'package:koch_app/models/paciente.dart';
 import 'package:koch_app/named_routes.dart';
-import 'package:intl/intl.dart';
 import 'package:koch_app/repositories/prontuario_repository.dart';
+
 import '../models/rest_client.dart';
 
 class FichaPage extends StatefulWidget {
@@ -17,6 +23,7 @@ class FichaPage extends StatefulWidget {
 
 class _FichaPageState extends State<FichaPage> {
   late DateTime data;
+  File? _image;
   late String dataFormatada;
   final ProntuarioRepository repo =
       ProntuarioRepository(restClient: GetIt.I.get<RestClient>());
@@ -32,6 +39,7 @@ class _FichaPageState extends State<FichaPage> {
   Widget build(BuildContext context) {
     data = DateTime.parse(widget.paciente.dataN);
     dataFormatada = DateFormat('dd-MM-yyyy').format(data);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -65,8 +73,7 @@ class _FichaPageState extends State<FichaPage> {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
-            Card(
-              margin: const EdgeInsets.only(top: 15),
+            Center(
               child: Padding(
                 padding: const EdgeInsets.only(
                     left: 12, right: 12, top: 10, bottom: 12),
@@ -136,30 +143,38 @@ class _FichaPageState extends State<FichaPage> {
                         contentPadding: EdgeInsets.all(16),
                       ),
                     ),
-                    Text('Imagem de Exame:', style: _style()),
-                    AspectRatio(
-                      aspectRatio: 1,
-                      child: Image.network(
-                        widget.paciente.imgTrat,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
                     const SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        var teste =
-                            await repo.achar(widget.paciente.id.toString());
-
-                        Navigator.pushNamed(
-                          context,
-                          AddProntuarioViewRoute,
-                          arguments: teste,
-                        );
-                      },
-                      child: const Text("Acessar Prontuario"),
+                    Text('Imagem de Exame:', style: _style()),
+                    if (_image != null)
+                      Image.file(
+                        _image!,
+                        height: 300,
+                        width: 300,
+                      ),
+                    const SizedBox(
+                      height: 35,
                     ),
+                    SizedBox(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () async {
+                            var teste = await repo.achar(
+                              widget.paciente.id.toString(),
+                            );
+                            Navigator.pushNamed(
+                              context,
+                              AddProntuarioViewRoute,
+                              arguments: teste,
+                            );
+                          },
+                          child: const Text("Acessar Prontuario"),
+                        ),
+                      ],
+                    )),
                   ],
                 ),
               ),

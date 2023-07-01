@@ -16,7 +16,7 @@ class Contato {
         id: map['id'] ?? 1,
         nome: map['name'] ?? 'Não Informado',
         email: map['email'] ??
-            'Não Informado', // não temos o campo numero no bd, estou resolvendo isso hj
+            'Não Informado', 
         numero: map['number'] ?? 'Não Informado');
   }
 }

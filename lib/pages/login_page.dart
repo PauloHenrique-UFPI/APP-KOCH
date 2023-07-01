@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:koch_app/componentization/block_button.dart';
@@ -22,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   final _senha = TextEditingController();
 
   Future login(String email, String password) async {
-    SharedPreferences _sharedPreferences =
+    SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
 
     try {
@@ -42,11 +44,10 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       token = response['token'];
-      await _sharedPreferences.setString('token', token);
+      await sharedPreferences.setString('token', token);
 
       Navigator.pushNamed(context, InitialViemRoute);
     } catch (error) {
-      // ignore: use_build_context_synchronously
       showDialog(
         context: context,
         builder: (BuildContext context) {

@@ -14,7 +14,7 @@ class Paciente {
   String nSinan;
   String unidadeTratamento;
   String unidadeCad;
-  String imgTrat;
+  String? imgTrat;
 
   Paciente({
     required this.id,
@@ -32,7 +32,7 @@ class Paciente {
     required this.nSinan,
     required this.unidadeTratamento,
     required this.unidadeCad,
-    required this.imgTrat,
+    this.imgTrat,
   });
 
   factory Paciente.toMap(map) {
@@ -52,8 +52,7 @@ class Paciente {
       nSinan: map['n_sinan'] ?? 'Não Informado',
       unidadeTratamento: map['unidade_tratamento'] ?? 'Não Informado',
       unidadeCad: map['unidade_cad'] ?? 'Não Informado',
-      imgTrat: map['img_trat'] ??
-          'https://cdn-icons-png.flaticon.com/512/5110/5110429.png',
+      imgTrat: map['img_trat'] ?? 'Não Informado',
     );
   }
 }
