@@ -1,5 +1,6 @@
 import 'package:koch_app/models/rest_client.dart';
 import 'package:koch_app/models/prontuario.dart';
+import 'package:result_dart/result_dart.dart';
 
 class ProntuarioRepository {
   final RestClient _rest;
@@ -10,8 +11,12 @@ class ProntuarioRepository {
     return response["groups"].map<Prontuario>(Prontuario).toList();
   }
 
-  Future<Prontuario> acharProntuario(int id) async {
-    final response = await _rest.get('/prontuarioId/$id');
-    return Prontuario.fromJson(response);
+  AsyncResult<Prontuario, Exception> acharProntuario(int id) async {
+    try {
+      final response = await _rest.get('/prontuarioId/$id');
+      return Prontuario.fromJson(response).toSuccess();
+    } catch (e) {
+      return Exception('Erro eo carregar prontuario').toFailure();
+    }
   }
 }

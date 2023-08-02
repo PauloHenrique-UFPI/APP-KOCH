@@ -1,24 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:koch_app/models/prontuario.dart';
 import 'package:koch_app/repositories/prontuario_repository.dart';
 
 class ControllerProntuario extends ChangeNotifier {
   final ProntuarioRepository _repository;
   String search = "";
 
-  late final _prontuario;
+  late final Prontuario _prontuario;
   bool loading = false;
-  bool searshing = false;
-
-  void changeSearch(String key) {
-    search = key;
-    notifyListeners();
-  }
-
-  void changeSearshing() {
-    searshing = !searshing;
-    if (!searshing) search = "";
-    notifyListeners();
-  }
 
   ControllerProntuario({required ProntuarioRepository prontuarioRepository})
       : _repository = prontuarioRepository;
@@ -26,7 +15,7 @@ class ControllerProntuario extends ChangeNotifier {
   Future<void> achar(int id) async {
     try {
       loading = true;
-      _prontuario = await _repository.acharProntuario(id);
+      (await _repository.acharProntuario(id));
     } finally {
       loading = false;
       notifyListeners();

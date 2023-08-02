@@ -1,5 +1,5 @@
 class Prontuario {
-  String id_prontuario;
+  int id_prontuario;
   String tipo_entrada;
   String popu_especifica;
   String beneficiario;
@@ -37,8 +37,8 @@ class Prontuario {
 
   factory Prontuario.fromJson(map) {
     return Prontuario(
-      id_prontuario: map['id_prontuario'] ?? '1',
-      tipo_entrada: map['tipo_entrada'] ?? 'Não Informado',
+      id_prontuario: map['id'] ?? 1,
+      tipo_entrada: map['tipo'] ?? 'Não Informado',
       popu_especifica: map['popu_especifica'] ?? 'Não Informado',
       beneficiario: map['beneficiario'] ?? 'Não Informado',
       tipo_doenca: map['tipo_doenca'] ?? 'Não Informado',
@@ -48,12 +48,11 @@ class Prontuario {
       radiografia: map['radiografia'] ?? 'Não Informado',
       hiv: map['hiv'] ?? 'Não Informado',
       terapia: map['terapia'] ?? 'Não Informado',
-      data_inicio_tratamento_atual:
-          map['data_inicio_tratamento_atual'] ?? 'Não Informado',
+      data_inicio_tratamento_atual: map['data_ini'] ?? 'Não Informado',
       histopatologia: map['histopatologia'] ?? 'Não Informado',
       cultura: map['cultura'] ?? 'Não Informado',
-      teste_sensibilidade: map['teste_sensibilidade'] ?? 'Não Informado',
-      contatos_identificados: map['contatos_identificados'] ?? 'Não Informado',
+      teste_sensibilidade: map['teste_sens'] ?? 'Não Informado',
+      contatos_identificados: map['contatos_ident'] ?? 'Não Informado',
     );
   }
 }

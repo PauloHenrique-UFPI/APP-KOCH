@@ -47,6 +47,7 @@ dependencies:
   flutter_spinkit: ^5.2.0
   image_cropper: ^4.0.1
   flutter_image_compress: ^2.0.3
+  result_dart: ^1.1.0
 
 dev_dependencies:
   flutter_test:

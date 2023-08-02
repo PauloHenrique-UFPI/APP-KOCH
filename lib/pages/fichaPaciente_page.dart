@@ -20,19 +20,21 @@ class FichaPage extends StatefulWidget {
 }
 
 class _FichaPageState extends State<FichaPage> {
-  final controller = ControllerProntuario(
-      prontuarioRepository: ProntuarioRepository(restClient: DioClient()));
+  // final controller = ControllerProntuario(
+  //   prontuarioRepository: ProntuarioRepository(
+  //     restClient: DioClient(),
+  //   ),
+  // );
+
+  final prontuarioRepository = ProntuarioRepository(
+    restClient: DioClient(),
+  );
+
   late DateTime data;
   File? _image;
   late String dataFormatada;
   final ProntuarioRepository repo =
       ProntuarioRepository(restClient: GetIt.I.get<RestClient>());
-
-  @override
-  void initState() {
-    controller.achar(widget.paciente.id);
-    super.initState();
-  }
 
   TextStyle _style() {
     return const TextStyle(
@@ -168,40 +170,44 @@ class _FichaPageState extends State<FichaPage> {
                         children: [
                           ElevatedButton(
                             onPressed: () {
-                              try {
-                                  Navigator.pushNamed(
-                                    context,
-                                    ProntuarioViewRoute,
-                                    arguments: {
-                                      'id': widget.paciente.id,
-                                    },
-                                  );
-                                
-                              } catch (e) {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title:
-                                          const Text("Prontuário Inexistente"),
-                                      content: const Text(
-                                          "Deseja Adicionar um prontuário?"),
-                                      actions: <Widget>[
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(context, 'Não'),
-                                          child: const Text("Não"),
-                                        ),
-                                        TextButton(
-                                          onPressed: () => Navigator.pushNamed(
-                                              context, AddProntuarioViewRoute),
-                                          child: const Text('Adicionar'),
-                                        ),
-                                      ],
+                              prontuarioRepository
+                                  .acharProntuario(widget.paciente.id)
+                                  .then(
+                                (result) {
+                                  result.fold((success) {
+                                    Navigator.pushNamed(
+                                      context,
+                                      ProntuarioViewRoute,
+                                      arguments: success,
                                     );
-                                  },
-                                );
-                              }
+                                  }, (failure) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text(
+                                              "Prontuário Inexistente"),
+                                          content: const Text(
+                                              "Deseja Adicionar um prontuário?"),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              onPressed: () =>
+                                                  Navigator.pop(context, 'Não'),
+                                              child: const Text("Não"),
+                                            ),
+                                            TextButton(
+                                              onPressed: () =>
+                                                  Navigator.pushNamed(context,
+                                                      AddProntuarioViewRoute),
+                                              child: const Text('Adicionar'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  });
+                                },
+                              );
                             },
                             child: const Text("Acessar Prontuário"),
                           ),
