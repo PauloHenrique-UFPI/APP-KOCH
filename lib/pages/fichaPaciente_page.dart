@@ -1,15 +1,13 @@
-// ignore_for_file: file_names
-
+// ignore_for_file: file_names, use_build_context_synchronously, unrelated_type_equality_checks
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
-
+import 'package:koch_app/controllers.dart/controller_prontuario.dart';
+import 'package:koch_app/core/rest_client/dio_client.dart';
 import 'package:koch_app/models/paciente.dart';
 import 'package:koch_app/named_routes.dart';
 import 'package:koch_app/repositories/prontuario_repository.dart';
-
 import '../models/rest_client.dart';
 
 class FichaPage extends StatefulWidget {
@@ -22,11 +20,21 @@ class FichaPage extends StatefulWidget {
 }
 
 class _FichaPageState extends State<FichaPage> {
+  final controller = ControllerProntuario(
+      prontuarioRepository: ProntuarioRepository(restClient: DioClient()));
   late DateTime data;
   File? _image;
   late String dataFormatada;
   final ProntuarioRepository repo =
       ProntuarioRepository(restClient: GetIt.I.get<RestClient>());
+      
+  @override
+  void initState() {
+    controller.achar(widget.paciente.id);
+    super.initState();
+  }
+
+
 
   TextStyle _style() {
     return const TextStyle(
@@ -157,24 +165,50 @@ class _FichaPageState extends State<FichaPage> {
                       height: 35,
                     ),
                     SizedBox(
-                        child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () async {
-                            var teste = await repo.achar(
-                              widget.paciente.id.toString(),
-                            );
-                            Navigator.pushNamed(
-                              context,
-                              AddProntuarioViewRoute,
-                              arguments: teste,
-                            );
-                          },
-                          child: const Text("Acessar Prontuario"),
-                        ),
-                      ],
-                    )),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () async {
+                              try {
+                                Navigator.pushNamed(
+                                  context,
+                                  ProntuarioViewRoute,
+                                  arguments: {
+                                    'id': widget.paciente.id,
+                                  },
+                                );
+                              } catch (e) {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title:
+                                          const Text("Prontuário Inexistente"),
+                                      content: const Text(
+                                          "Deseja Adicionar um prontuário?"),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context, 'Não'),
+                                          child: const Text("Não"),
+                                        ),
+                                        TextButton(
+                                          onPressed: () => Navigator.pushNamed(
+                                              context, AddProntuarioViewRoute),
+                                          child: const Text('Adicionar'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+                            },
+                            child: const Text("Acessar Prontuário"),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
