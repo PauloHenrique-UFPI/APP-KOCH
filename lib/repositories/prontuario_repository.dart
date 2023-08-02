@@ -10,9 +10,8 @@ class ProntuarioRepository {
     return response["groups"].map<Prontuario>(Prontuario).toList();
   }
 
-  Future<Prontuario> achar(int id) async {
-    final response = await _rest.post('/prontuarioId/', {"id": id});
-    print(id);
+  Future<Prontuario> acharProntuario(int id) async {
+    final response = await _rest.get('/prontuarioId/$id');
     return Prontuario.fromJson(response);
   }
 }

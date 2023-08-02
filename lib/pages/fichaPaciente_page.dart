@@ -27,14 +27,12 @@ class _FichaPageState extends State<FichaPage> {
   late String dataFormatada;
   final ProntuarioRepository repo =
       ProntuarioRepository(restClient: GetIt.I.get<RestClient>());
-      
+
   @override
   void initState() {
     controller.achar(widget.paciente.id);
     super.initState();
   }
-
-
 
   TextStyle _style() {
     return const TextStyle(
@@ -169,15 +167,16 @@ class _FichaPageState extends State<FichaPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
-                            onPressed: () async {
+                            onPressed: () {
                               try {
-                                Navigator.pushNamed(
-                                  context,
-                                  ProntuarioViewRoute,
-                                  arguments: {
-                                    'id': widget.paciente.id,
-                                  },
-                                );
+                                  Navigator.pushNamed(
+                                    context,
+                                    ProntuarioViewRoute,
+                                    arguments: {
+                                      'id': widget.paciente.id,
+                                    },
+                                  );
+                                
                               } catch (e) {
                                 showDialog(
                                   context: context,

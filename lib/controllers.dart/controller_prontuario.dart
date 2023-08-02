@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:koch_app/models/prontuario.dart';
 import 'package:koch_app/repositories/prontuario_repository.dart';
 
 class ControllerProntuario extends ChangeNotifier {
@@ -27,7 +26,7 @@ class ControllerProntuario extends ChangeNotifier {
   Future<void> achar(int id) async {
     try {
       loading = true;
-      _prontuario = await _repository.achar(id);
+      _prontuario = await _repository.acharProntuario(id);
     } finally {
       loading = false;
       notifyListeners();
