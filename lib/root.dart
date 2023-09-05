@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:koch_app/componentization/app_appbar.dart';
 import 'package:koch_app/named_routes.dart';
 import 'package:koch_app/pages/contatos_page.dart';
 import 'package:koch_app/pages/home_page.dart';
@@ -34,28 +35,7 @@ class _RootState extends State<Root> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const Text(
-          'TB-Koch',
-          style:
-              TextStyle(fontSize: 16.0, color: Color.fromARGB(255, 26, 25, 25)),
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              Navigator.pushNamed(
-                context,
-                ProfileViewRoute,
-                arguments: {
-                  'id': 1,
-                },
-              );
-            },
-          ),
-        ],
-      ),
+      appBar: compAppBar(),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,

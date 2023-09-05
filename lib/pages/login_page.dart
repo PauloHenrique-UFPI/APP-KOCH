@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
           'password': password,
         },
       );
-
+      
       token = response['token'];
       await sharedPreferences.setString('token', token);
 
@@ -52,10 +52,9 @@ class _LoginPageState extends State<LoginPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+
             title: const Text('Login Invalido'),
             content: const Text('Seu E-mail e/ou senha inválidos'),
-            // title: const Text('ERRO'),
-            // content: const Text('Erro no servidor:'),
             actions: [
               TextButton(
                 child: const Text('OK'),

@@ -18,8 +18,10 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   final controller = ControllerNoticias(
-      noticiasRepository:
-          NoticiasRepository(restClient: GetIt.I.get<RestClient>()));
+    noticiasRepository: NoticiasRepository(
+      restClient: GetIt.I.get<RestClient>(),
+    ),
+  );
 
   @override
   void initState() {

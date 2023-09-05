@@ -19,11 +19,6 @@ class FichaPage extends StatefulWidget {
 }
 
 class _FichaPageState extends State<FichaPage> {
-  // final controller = ControllerProntuario(
-  //   prontuarioRepository: ProntuarioRepository(
-  //     restClient: DioClient(),
-  //   ),
-  // );
 
   final prontuarioRepository = ProntuarioRepository(
     restClient: DioClient(),
@@ -190,14 +185,16 @@ class _FichaPageState extends State<FichaPage> {
                                               "Deseja Adicionar um prontuário?"),
                                           actions: <Widget>[
                                             TextButton(
-                                              onPressed: () =>
-                                                  Navigator.pop(context, 'Não'),
+                                              onPressed: () =>{
+                                                Navigator.pop(context, 'Não'),
+                                              },
                                               child: const Text("Não"),
                                             ),
                                             TextButton(
-                                              onPressed: () =>
-                                                  Navigator.pushNamed(context,
-                                                      AddProntuarioViewRoute),
+                                              onPressed: () =>{
+                                                Navigator.pop(context),
+                                                Navigator.pushNamed(context, AddProntuarioViewRoute),
+                                              },  
                                               child: const Text('Adicionar'),
                                             ),
                                           ],
@@ -210,6 +207,7 @@ class _FichaPageState extends State<FichaPage> {
                             },
                             child: const Text("Acessar Prontuário"),
                           ),
+                          ElevatedButton(onPressed: (){}, child: const Text("Adicionar Imagem"),),
                         ],
                       ),
                     ),

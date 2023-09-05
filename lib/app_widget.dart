@@ -29,7 +29,6 @@ class _AppWidgetState extends State<AppWidget> {
             ? Brightness.dark
             : Brightness.light,
       ),
-      //onGenerateRoute: generateRoute,
       routes: routes,
       initialRoute: InitialViemRoute,
     );

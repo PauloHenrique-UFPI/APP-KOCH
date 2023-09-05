@@ -2,16 +2,15 @@ class User {
   int id;
   String nome;
   String email;
-  String profileImage;
+  String? profileImage;
 
   User({
     required this.id,
     required this.nome,
     required this.email,
-    required this.profileImage,
-
+    this.profileImage,
   });
-  factory User.fromMap(map) {
+  factory User.toMap(map) {
     return User(
       id: map['id'] ?? 1,
       nome: map['nome'] ?? "Não Informado",

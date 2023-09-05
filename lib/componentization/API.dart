@@ -14,7 +14,7 @@ class FetchUser {
       var response = await http.get(url);
       if (response.statusCode == 200) {
         data = json.decode(response.body);
-        results = data.map<User>(User.fromMap).toList();
+        results = data.map<User>(User.toMap).toList();
         if (query != null) {
           results = results
               .where((element) =>

@@ -3,6 +3,7 @@ import 'package:koch_app/models/contatos.dart';
 import 'package:koch_app/models/noticias.dart';
 import 'package:koch_app/models/paciente.dart';
 import 'package:koch_app/models/prontuario.dart';
+import 'package:koch_app/models/user.dart';
 import 'package:koch_app/named_routes.dart';
 import 'package:koch_app/pages/add_noticias.dart';
 import 'package:koch_app/pages/add_paciente.dart';
@@ -21,10 +22,15 @@ Map<String, Widget Function(BuildContext)> routes = {
   InitialViemRoute: (p0) => const PaginaInicial(),
   RootViewRoute: (p0) => const Root(),
   LoginViewRoute: (p0) => const LoginPage(),
-  ProfileViewRoute: (p0) => const ProfilePage(),
   AddPacienteViewRoute: (p0) => const AddPacientes(),
   AddNoticiaViewRoute: (p0) => const AddNoticia(),
   AddProntuarioViewRoute: (p0) => const AddProntuario(),
+  ProfileViewRoute: (context) {
+    final arg = ModalRoute.of(context)?.settings.arguments;
+    return ProfilePage(
+      user: arg as User,
+    );
+  },
   FichaViewRoute: (context) {
     final arg = ModalRoute.of(context)?.settings.arguments;
     return FichaPage(

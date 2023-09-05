@@ -1,4 +1,7 @@
+import 'dart:js';
 import 'package:flutter/material.dart';
+import 'package:koch_app/models/user.dart';
+import 'package:koch_app/named_routes.dart';
 
 AppBar compAppBar() {
   return AppBar(
@@ -8,7 +11,10 @@ AppBar compAppBar() {
       style: TextStyle(fontSize: 16.0, color: Color.fromARGB(255, 26, 25, 25)),
     ),
     actions: <Widget>[
-      IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
+      IconButton(
+        icon: const Icon(Icons.settings),
+        onPressed: () {},
+      ),
     ],
   );
 }
