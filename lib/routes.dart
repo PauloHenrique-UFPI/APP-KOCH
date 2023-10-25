@@ -18,6 +18,8 @@ import 'package:koch_app/pages/profile_page.dart';
 import 'package:koch_app/pages/prontuario_page.dart';
 import 'package:koch_app/root.dart';
 
+import 'package:koch_app/pages/calendar_page.dart';
+
 Map<String, Widget Function(BuildContext)> routes = {
   InitialViemRoute: (p0) => const PaginaInicial(),
   RootViewRoute: (p0) => const Root(),
@@ -25,6 +27,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   AddPacienteViewRoute: (p0) => const AddPacientes(),
   AddNoticiaViewRoute: (p0) => const AddNoticia(),
   AddProntuarioViewRoute: (p0) => const AddProntuario(),
+  CalendarViewRoute: (context) => const CalendarPage(),
   ProfileViewRoute: (context) {
     final arg = ModalRoute.of(context)?.settings.arguments;
     return ProfilePage(

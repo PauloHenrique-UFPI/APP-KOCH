@@ -19,7 +19,6 @@ class FichaPage extends StatefulWidget {
 }
 
 class _FichaPageState extends State<FichaPage> {
-
   final prontuarioRepository = ProntuarioRepository(
     restClient: DioClient(),
   );
@@ -148,6 +147,17 @@ class _FichaPageState extends State<FichaPage> {
                     const SizedBox(
                       height: 20,
                     ),
+                    Center(
+                      child: ElevatedButton.icon(
+                          onPressed: () {
+                            Navigator.pushNamed(context, CalendarViewRoute);
+                          },
+                          icon: Icon(Icons.calendar_month),
+                          label: Text('Calendário')),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Text('Imagem de Exame:', style: _style()),
                     if (_image != null)
                       Image.file(
@@ -185,16 +195,17 @@ class _FichaPageState extends State<FichaPage> {
                                               "Deseja Adicionar um prontuário?"),
                                           actions: <Widget>[
                                             TextButton(
-                                              onPressed: () =>{
+                                              onPressed: () => {
                                                 Navigator.pop(context, 'Não'),
                                               },
                                               child: const Text("Não"),
                                             ),
                                             TextButton(
-                                              onPressed: () =>{
+                                              onPressed: () => {
                                                 Navigator.pop(context),
-                                                Navigator.pushNamed(context, AddProntuarioViewRoute),
-                                              },  
+                                                Navigator.pushNamed(context,
+                                                    AddProntuarioViewRoute),
+                                              },
                                               child: const Text('Adicionar'),
                                             ),
                                           ],
@@ -207,7 +218,10 @@ class _FichaPageState extends State<FichaPage> {
                             },
                             child: const Text("Acessar Prontuário"),
                           ),
-                          ElevatedButton(onPressed: (){}, child: const Text("Adicionar Imagem"),),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: const Text("Adicionar Imagem"),
+                          ),
                         ],
                       ),
                     ),
