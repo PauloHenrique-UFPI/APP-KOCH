@@ -182,6 +182,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  flutter_localizations:
+    dependency: "direct main"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -208,6 +213,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  get:
+    dependency: "direct main"
+    description:
+      name: get
+      sha256: e4e7335ede17452b391ed3b2ede016545706c01a02292a6c97619705e7d2a85e
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.6.6"
   get_it:
     dependency: "direct main"
     description:
@@ -300,10 +313,10 @@ packages:
     dependency: "direct main"
     description:
       name: intl
-      sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
+      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.17.0"
+    version: "0.18.1"
   js:
     dependency: transitive
     description:
@@ -520,6 +533,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  simple_gesture_detector:
+    dependency: transitive
+    description:
+      name: simple_gesture_detector
+      sha256: "86d08f85f1f58583b7b4b941d989f48ea6ce08c1724a1d10954a277c2ec36592"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -581,6 +602,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0"
+  table_calendar:
+    dependency: "direct main"
+    description:
+      name: table_calendar
+      sha256: "1e3521a3e6d3fc7f645a58b135ab663d458ab12504f1ea7f9b4b81d47086c478"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.9"
   term_glyph:
     dependency: transitive
     description:
@@ -663,4 +692,4 @@ packages:
     version: "1.0.0"
 sdks:
   dart: ">=3.1.0-185.0.dev <4.0.0"
-  flutter: ">=3.3.0"
+  flutter: ">=3.13.0"

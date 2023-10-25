@@ -38,7 +38,7 @@ class _AddPacientesState extends State<AddPacientes> with ValidationsMixin {
   final _numSinan = TextEditingController();
   final _unidTratamento = TextEditingController();
   final _unidCadastro = TextEditingController();
-  late var _imgTrat;
+  var _imgTrat;
   final httpClient = GetIt.I.get<RestClient>();
 
   Future add(
