@@ -24,8 +24,6 @@ class PacientePageState extends State<PacientePage> {
     super.initState();
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -45,8 +43,10 @@ class PacientePageState extends State<PacientePage> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.black),
                       autofocus: true,
                       onChanged: controller.changeSearch,
+                      decoration: const InputDecoration(labelText: 'Paciente: '),
                     ),
                   ),
                 ),

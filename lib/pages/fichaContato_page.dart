@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:koch_app/models/contatos.dart';
 import 'package:koch_app/named_routes.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FichaContato extends StatefulWidget {
   final Contato contatos;
@@ -20,6 +21,14 @@ class _FichaContatoState extends State<FichaContato> {
     );
   }
 
+  // Future<void> _makePhoneCall(String phoneNumber) async {
+  //   final Uri launchUri = Uri(
+  //     scheme: 'tel',
+  //     path: phoneNumber,
+  //   );
+  //   await launchUrl(launchUri);
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,20 +38,20 @@ class _FichaContatoState extends State<FichaContato> {
           style:
               TextStyle(fontSize: 16.0, color: Color.fromARGB(255, 26, 25, 25)),
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              Navigator.pushNamed(
-                context,
-                ProfileViewRoute,
-                arguments: {
-                  'id': 1,
-                },
-              );
-            },
-          ),
-        ],
+        // actions: <Widget>[
+        //   IconButton(
+        //     icon: const Icon(Icons.settings),
+        //     onPressed: () {
+        //       Navigator.pushNamed(
+        //         context,
+        //         ProfileViewRoute,
+        //         arguments: {
+        //           'id': 1,
+        //         },
+        //       );
+        //     },
+        //   ),
+        // ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -96,21 +105,44 @@ class _FichaContatoState extends State<FichaContato> {
                       height: 5,
                     ),
                     Text(
-                      'E-mail:',
+                      'Descrição:',
                       style: _style(),
                     ),
                     TextField(
                       readOnly: true,
-                      controller:
-                          TextEditingController(text: widget.contatos.email),
+                      maxLines: null,
+                      controller: TextEditingController(
+                          text: widget.contatos.descricao),
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         contentPadding: EdgeInsets.all(16),
                       ),
                     ),
                     const SizedBox(
-                      height: 5,
+                      height: 10,
                     ),
+                    Center(
+                      child: TextButton.icon(
+                          onPressed: () async {
+                            final Uri url = Uri(
+                              scheme: 'tel',
+                              path: widget.contatos.numero,
+                            );
+                            if (await canLaunchUrl(url)) {
+                              await launchUrl(url);
+                            } else {
+                              print('erro ao abrir link');
+                            }
+                          },
+                          icon: const Icon(
+                            Icons.phone,
+                            color: Colors.green,
+                          ),
+                          label: const Text(
+                            'Ligar',
+                            style: TextStyle(color: Colors.green),
+                          )),
+                    )
                   ],
                 ),
               ),

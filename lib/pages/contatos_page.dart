@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:koch_app/core/rest_client/dio_client.dart';
 import 'package:koch_app/models/contatos.dart';
 import 'package:koch_app/named_routes.dart';
 import '../controllers.dart/controller_contatos.dart';
-import '../repositories/contatos_repository.dart';
 
 class ContatoPage extends StatefulWidget {
   const ContatoPage({super.key});
@@ -15,12 +13,10 @@ class ContatoPage extends StatefulWidget {
 }
 
 class ContatoPageState extends State<ContatoPage> {
-  final controller = Controllercontato(
-      contatoRepository: ContatoRepository(restClient: DioClient()));
+  final controller = Controllercontato();
 
   @override
   void initState() {
-    controller.buscarcontato();
     super.initState();
   }
 
@@ -43,6 +39,9 @@ class ContatoPageState extends State<ContatoPage> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: TextFormField(
+                      style: const TextStyle(color: Colors.black),
+                      decoration:
+                          const InputDecoration(labelText: 'Contatos: '),
                       autofocus: true,
                       onChanged: controller.changeSearch,
                     ),
@@ -75,45 +74,33 @@ class ContatoPageState extends State<ContatoPage> {
     );
   }
 }
+
 class _Body extends StatelessWidget {
   final List<Contato> contato;
   const _Body({required this.contato});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: contato.length,
-      itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () => {
-            Navigator.pushNamed(context, ContatoViewRoute,
-                arguments: contato[index]),
-          },
-          child: Card(
-            elevation: 5.0,
-            margin: const EdgeInsets.all(8.0),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 12, right: 12, top: 10, bottom: 12),
-              child: Column(
-                children: <Widget>[
-                  ListTile(
-                    title: Text(contato[index].nome),
-                    textColor: Colors.white,
-                    tileColor: Colors.red[400],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(contato[index].numero),
-                  )
-                ],
+    return Card(
+      elevation: 5.0,
+      margin: const EdgeInsets.all(8.0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: contato.map((contato) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: ListTile(
+                title: Text(contato.nome),
+                subtitle: Text(contato.numero),
+                onTap: () {
+                  Navigator.pushNamed(context, ContatoViewRoute,
+                      arguments: contato);
+                },
               ),
-            ),
-          ),
-        );
-      },
+            );
+          }).toList(),
+        ),
+      ),
     );
   }
 }
