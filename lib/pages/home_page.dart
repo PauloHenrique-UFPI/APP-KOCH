@@ -109,16 +109,16 @@ class _Body extends StatelessWidget {
   }
 }
 
-class Customizavel extends StatelessWidget {
-  const Customizavel({super.key});
+// class Customizavel extends StatelessWidget {
+//   const Customizavel({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Switch(
-      value: AppController.instance.temaDaAplicacao,
-      onChanged: (value) {
-        AppController.instance.changeThema();
-      },
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Switch(
+//       value: AppController.instance.temaDaAplicacao,
+//       onChanged: (value) {
+//         AppController.instance.changeThema();
+//       },
+//     );
+//   }
+// }

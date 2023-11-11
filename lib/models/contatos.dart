@@ -1,22 +1,20 @@
 class Contato {
-  int id;
   String nome;
-  String email;
   String numero;
+  String? descricao;
 
   Contato({
-    required this.id,
     required this.nome,
-    required this.email,
     required this.numero,
+    this.descricao,
   });
 
   factory Contato.toMap(map) {
     return Contato(
-        id: map['id'] ?? 1,
+        descricao: map['desc'],
         nome: map['name'] ?? 'Não Informado',
-        email: map['email'] ??
-            'Não Informado', 
         numero: map['number'] ?? 'Não Informado');
   }
 }
+
+
