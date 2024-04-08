@@ -52,6 +52,7 @@ dependencies:
   get: ^4.6.6
   flutter_localizations:
     sdk: flutter
+  url_launcher: ^6.1.10
 
 dev_dependencies:
   flutter_test:

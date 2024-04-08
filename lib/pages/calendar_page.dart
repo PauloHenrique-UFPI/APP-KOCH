@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:koch_app/controllers.dart/controller_eventos.dart';
+import 'package:koch_app/core/rest_client/dio_client.dart';
+import 'package:koch_app/models/eventos.dart';
+import 'package:koch_app/repositories/eventos_repository.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 bool repetirSemanalmente = false;
 
-class CustomEvent {
-  final String title;
-  final DateTime date;
+// class Evento {
+//   final String title;
+//   final DateTime date;
 
-  CustomEvent(this.title, this.date);
-}
+//   Evento(this.title, this.date);
+// }
 
 class CalendarPage extends StatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
@@ -20,12 +24,14 @@ class CalendarPage extends StatefulWidget {
 
 class _CalendarPageState extends State<CalendarPage> {
   DateTime today = DateTime.now();
-  ValueNotifier<List<CustomEvent>> _selectedEvents =
-      ValueNotifier<List<CustomEvent>>([]);
+  final controller = ControllerEvento(
+      eventoRepository: EventoRepository(restClient: DioClient()));
+  ValueNotifier<List<Evento>> _selectedEvents = ValueNotifier<List<Evento>>([]);
 
   @override
   void initState() {
     super.initState();
+    controller.buscareventos();
     _selectedEvents = ValueNotifier([]);
   }
 
@@ -42,10 +48,11 @@ class _CalendarPageState extends State<CalendarPage> {
             List.from(_selectedEvents.value); // Notificar os ouvintes
 
         if (repetirSemanalmente) {
-          for (int i = 1; i <= 4; i++) {
-            // Repetir o evento por 4 semanas
-            DateTime nextWeek = event.date.add(Duration(days: 7 * i));
-            CustomEvent nextEvent = CustomEvent(event.title, nextWeek);
+          for (int i = 1; i <= 12; i++) {
+            // Repetir o evento por 12 semanas
+            DateTime nextWeek = event.data.add(Duration(days: 7 * i));
+            Evento nextEvent =
+                Evento(titulo: event.titulo as String, data: nextWeek);
             _selectedEvents.value.add(nextEvent);
           }
           _selectedEvents.value = List.from(
@@ -61,12 +68,7 @@ class _CalendarPageState extends State<CalendarPage> {
       today = day;
     });
 
-    // Encontre todos os eventos neste dia
-    List<CustomEvent> eventsOnThisDay = _selectedEvents.value
-        .where((event) => isSameDay(event.date, day))
-        .toList();
-
-    if (eventsOnThisDay.isEmpty) {
+    if (controller.calendar?[day]?.isEmpty ?? true) {
       // Se não tiver eventos nesse dia, o dialogo para adicionar eventos vai ser aberto
       _addEvent(day);
     } else {
@@ -80,10 +82,11 @@ class _CalendarPageState extends State<CalendarPage> {
               constraints: const BoxConstraints(maxHeight: 200, maxWidth: 300),
               child: SingleChildScrollView(
                 child: Column(
-                  children: eventsOnThisDay
+                  children: controller.calendar!.values
+                      .expand((element) => element)
                       .map((event) => ListTile(
-                            title: Text(event.title),
-                            subtitle: Text(DateFormat('jm').format(event.date)),
+                            title: Text(event.titulo),
+                            subtitle: Text(DateFormat('jm').format(event.data)),
                             trailing: IconButton(
                               icon: const Icon(Icons.delete),
                               onPressed: () {
@@ -128,17 +131,15 @@ class _CalendarPageState extends State<CalendarPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: ValueListenableBuilder<List<CustomEvent>>(
+        child: ValueListenableBuilder<List<Evento>>(
           valueListenable: _selectedEvents,
           builder: (context, value, child) {
             return TableCalendar(
               eventLoader: (day) {
-                return value.where((event) {
-                  return isSameDay(event.date, day);
-                }).toList();
+                return controller.calendar?[day] ?? [];
               },
               locale: 'pt_BR',
-              headerStyle:const HeaderStyle(
+              headerStyle: const HeaderStyle(
                 formatButtonVisible: false,
                 titleCentered: true,
               ),
@@ -252,9 +253,9 @@ class _EventAddScreenState extends State<EventAddScreen> {
                       String tituloEvento = _titleController.text;
                       TimeOfDay? horarioEvento = widget.timeSub.value;
                       if (tituloEvento.isNotEmpty && horarioEvento != null) {
-                        CustomEvent event = CustomEvent(
-                          tituloEvento,
-                          DateTime(
+                        Evento event = Evento(
+                          titulo: tituloEvento,
+                          data: DateTime(
                             widget.today.year,
                             widget.today.month,
                             widget.today.day,
@@ -303,8 +304,8 @@ class _EventAddScreenState extends State<EventAddScreen> {
 }
 
 String convertTime(TimeOfDay timeOfDay) {
-  DateTime tempDate = DateFormat('hh:mm')
-      .parse('${timeOfDay.hour}:${timeOfDay.minute}');
+  DateTime tempDate =
+      DateFormat('hh:mm').parse('${timeOfDay.hour}:${timeOfDay.minute}');
   var dateFormat = DateFormat('h:mm a');
   return dateFormat.format(tempDate);
 }
@@ -315,11 +316,11 @@ Widget buildDateTimePicker(String data, String texto) {
     height: 60,
     child: Container(
       decoration: BoxDecoration(
-        color: Colors.blue.shade100.withOpacity(0.2), 
+        color: Colors.blue.shade100.withOpacity(0.2),
       ),
       child: ListTile(
-        contentPadding: EdgeInsets.zero, 
-        dense: true, 
+        contentPadding: EdgeInsets.zero,
+        dense: true,
         shape: const RoundedRectangleBorder(
           side: BorderSide(color: Colors.grey, width: 1.0),
         ),
@@ -328,7 +329,7 @@ Widget buildDateTimePicker(String data, String texto) {
           child: Text(
             texto,
             style: const TextStyle(
-              fontSize: 15.0, 
+              fontSize: 15.0,
               color: Colors.grey,
             ),
           ),
@@ -338,7 +339,7 @@ Widget buildDateTimePicker(String data, String texto) {
           child: Text(
             data,
             style: const TextStyle(
-              fontSize: 16.0, 
+              fontSize: 16.0,
               color: Colors.black,
             ),
           ),
@@ -348,7 +349,7 @@ Widget buildDateTimePicker(String data, String texto) {
           child: Icon(
             Icons.access_time,
             color: Colors.grey,
-            size: 25.0, 
+            size: 25.0,
           ),
         ),
       ),
